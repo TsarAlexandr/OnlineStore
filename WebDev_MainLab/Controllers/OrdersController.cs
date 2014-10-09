@@ -46,6 +46,8 @@ namespace WebDev_MainLab.Controllers
         {
             if (ModelState.IsValid)
             {
+                var ovm = GetOrder();
+                //ovm.
 
                 order.Country = _context.Country.FirstOrDefault(x => x.ID == countryId);
                 order.State = _context.State.FirstOrDefault(x => x.ID == stateId);
@@ -57,14 +59,23 @@ namespace WebDev_MainLab.Controllers
                     HttpContext.Session.Set("Cart", cart);
                 }
 
-                TempData["message"] = "Order Passed! Address:" + order.Country.Name + " "
-                    + order.State.Name + " " +
-                    order.Adress;
-                return RedirectToAction("Index", "Home");
+                
+                return RedirectToAction("Index", "Pay");
             }
             return View(order);
         }
 
+        private OrderViewModel GetOrder()
+        {
+            var order = HttpContext.Session.Get<OrderViewModel>("Order");
+            if (order == null)
+            {
+                order = new OrderViewModel();
+                HttpContext.Session.Set("Order", order);
+            }
+
+            return order;
+        }
        
 
 

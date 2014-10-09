@@ -62,7 +62,7 @@ namespace WebDev_MainLab.Data
 
         public DbSet<Country> Country { get; set; }
 
-        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderViewModel> Order { get; set; }
 
         List<Goods> IRepository.Goods => Goods.ToList();
     }
