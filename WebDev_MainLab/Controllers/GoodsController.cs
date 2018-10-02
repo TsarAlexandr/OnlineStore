@@ -64,7 +64,7 @@ namespace WebDev_MainLab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("ID,Rating,Name,Description,Price,category")] Goods goods, IFormFile ImageMimeType)
+        public IActionResult Create([Bind("Rating,Name,Description,Price,category")] Goods goods, IFormFile ImageMimeType)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace WebDev_MainLab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("ID,Rating,Name,Description,Price,category")] Goods goods, IFormFile ImageMimeType)
+        public IActionResult Edit(int id, [Bind("Rating,Name,Description,Price,category")] Goods goods, IFormFile ImageMimeType)
         {
             if (id != goods.ID)
             {
