@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebDev_MainLab.Data;
 using WebDev_MainLab.Models;
-using WebDev_MainLab.Services;
+
 
 namespace WebDev_MainLab
 {
@@ -34,7 +34,7 @@ namespace WebDev_MainLab
                 .AddDefaultTokenProviders();
 
             // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
+           
 
             services.AddScoped<IRepository, ApplicationDbContext>();
             services.AddDistributedMemoryCache();
