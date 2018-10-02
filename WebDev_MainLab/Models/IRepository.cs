@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace WebDev_MainLab.Models
 {
-    interface IRepository
+    public interface IRepository
     {
         List<Goods> Goods { get; }
         void RemoveItem(int? id);
         void AddItem(Goods item);
-
+        void UpdateItem(Goods item);
         Goods getByID(int? id);
 
     }

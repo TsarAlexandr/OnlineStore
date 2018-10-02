@@ -36,6 +36,10 @@ namespace WebDev_MainLab
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+            services.AddScoped<IRepository, ApplicationDbContext>();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
             services.AddMvc();
         }
 
@@ -53,6 +57,12 @@ namespace WebDev_MainLab
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseSession();
+
+            IServiceScopeFactory scopeFactory = app.ApplicationServices.
+                GetRequiredService<IServiceScopeFactory>();
+            IServiceScope scope = scopeFactory.CreateScope();
+
             app.UseStaticFiles();
 
             app.UseAuthentication();
@@ -63,6 +73,41 @@ namespace WebDev_MainLab
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            DatabaseInitialize(scope).Wait();
+        }
+
+        public async Task DatabaseInitialize(IServiceScope scope)
+        {
+
+
+
+            RoleManager<IdentityRole> roleManager =
+                scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            UserManager<ApplicationUser> userManager =
+                scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+
+            string adminName = "admin";
+            string password = "_aA123456";
+            if (await roleManager.FindByNameAsync("admin") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("admin"));
+            }
+            if (await roleManager.FindByNameAsync("user") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("user"));
+            }
+            if (await userManager.FindByNameAsync(adminName) == null)
+            {
+                ApplicationUser admin = new ApplicationUser { UserName = adminName };
+                IdentityResult result = await userManager.CreateAsync(admin, password);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(admin, "admin");
+                }
+            }
         }
     }
 }

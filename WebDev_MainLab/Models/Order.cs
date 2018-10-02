@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace WebDev_MainLab.Models
 {
-    public class Country
+    public class Order
     {
         public int ID { get; set; }
+        public Country Country { get; set; }
+        public State State{ get; set; }
         [Required]
-        public string Name { get; set; }
+        [MaxLength(20)]
+        public string Adress { get; set; }
+
     }
 }

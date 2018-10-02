@@ -12,9 +12,10 @@ using WebDev_MainLab.Models;
 namespace WebDev_MainLab.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181001062753_DeleteListOfSatates")]
+    partial class DeleteListOfSatates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,19 +179,6 @@ namespace WebDev_MainLab.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("WebDev_MainLab.Models.Country", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Country");
                 });
 
             modelBuilder.Entity("WebDev_MainLab.Models.Goods", b =>

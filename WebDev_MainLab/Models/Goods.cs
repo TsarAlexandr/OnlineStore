@@ -92,6 +92,7 @@ namespace WebDev_MainLab.Models
 
     public enum Categories
     {
+        All,
         Electroniks,
         Books,
         Clothes,
