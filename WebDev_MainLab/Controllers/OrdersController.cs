@@ -47,10 +47,9 @@ namespace WebDev_MainLab.Controllers
             if (ModelState.IsValid)
             {
                 var ovm = GetOrder();
-                //ovm.
-
-                order.Country = _context.Country.FirstOrDefault(x => x.ID == countryId);
-                order.State = _context.State.FirstOrDefault(x => x.ID == stateId);
+                ovm.Country = _context.Country.FirstOrDefault(x => x.ID == countryId).Name;
+                ovm.City = _context.State.FirstOrDefault(x => x.ID == stateId).Name;
+                ovm.Adress = order.Adress;
 
                 var cart = HttpContext.Session.Get<Cart>("Cart");
                 if (cart != null)
@@ -59,6 +58,7 @@ namespace WebDev_MainLab.Controllers
                     HttpContext.Session.Set("Cart", cart);
                 }
 
+                HttpContext.Session.Set("Order", ovm);
                 
                 return RedirectToAction("Index", "Pay");
             }

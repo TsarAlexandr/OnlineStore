@@ -18,13 +18,23 @@ namespace WebDev_MainLab.Controllers
             return View("Credit card");
         }
 
-        //[HttpPost]
-        //public IActionResult Create([Bind("CardNumber, OwnerNam, OwnerSurname")]CreditCard creditCard)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
+        [HttpPost]
+        public IActionResult Create([Bind("CardNumber, OwnerNam, OwnerSurname")]CreditCard creditCard)
+        {
+            if (ModelState.IsValid)
+            {
+                var ovm = HttpContext.Session.Get<OrderViewModel>("Order");
+                if (ovm == null)
+                    return RedirectToAction("Create", "Order");
 
-        //    }
-        //}
+                ovm.CardNumber = creditCard.CradNumber;
+                ovm.Name = creditCard.OwnerName;
+                ovm.Surname = creditCard.OwnerSurname;
+
+                HttpContext.Session.Set("Order", null);
+                return View("OrderView", ovm);
+            }
+            return View(creditCard);
+        }
     }
 }
