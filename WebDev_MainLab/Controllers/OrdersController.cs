@@ -76,12 +76,6 @@ namespace WebDev_MainLab.Controllers
 
             return order;
         }
-       
 
-
-        private bool OrderExists(int id)
-        {
-            return _context.Order.Any(e => e.ID == id);
-        }
     }
 }

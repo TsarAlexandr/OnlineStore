@@ -1,0 +1,52 @@
+﻿@model WebDev_MainLab.Models.Cart
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-danger">@TempData["error"]</div>
+}
+<h2>Your Basket</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-center">Quantity</th>
+            <th>Item</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Lines)
+        {
+            <tr>
+                <td class="text-center">
+                @using (Html.BeginForm("RemoveFilm", "Carts"))
+                {
+                    <div class="pull-left">
+                        @Html.Hidden("itemID", @line.MyItem.ID)
+                        <input type="submit" class="btn btn-danger" value="Remove" />
+
+                    </div>
+                }
+                @line.Quantity</td>
+                <td class="text-left">@line.MyItem.Name</td>
+                <td class="text-right">@line.MyItem.Price</td>
+                <td class="text-right">
+                    @((line.Quantity * Double.Parse(line.MyItem.Price)).ToString())
+                
+               </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">
+                @Model.ComputeTotalValue().ToString()
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a class="btn btn-primary" asp-action="Index" asp-controller="Films">Back to films</a>
+    <a class="btn btn-primary" asp-action="getOrder">Get Order</a>
+</div>

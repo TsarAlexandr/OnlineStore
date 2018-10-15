@@ -35,7 +35,7 @@ namespace WebDev_MainLab.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddFilm(int itemID)
+        public IActionResult AddItem(int itemID)
         {
             var film = repo.getByID(itemID);
             if (film != null)
@@ -50,7 +50,7 @@ namespace WebDev_MainLab.Controllers
         }
         [Authorize]
         [HttpPost]
-        public IActionResult RemoveFilm(int itemID)
+        public IActionResult RemoveItem(int itemID)
         {
             var film = repo.getByID(itemID);
             if (film != null)
