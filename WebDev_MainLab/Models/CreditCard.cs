@@ -7,8 +7,9 @@ namespace WebDev_MainLab.Models
     public class CreditCard
     {
         private string _number;
+        
         [Required]
-        public string CradNumber {
+        public string CardNumber {
             get
                 { return _number; }
             set
@@ -33,7 +34,7 @@ namespace WebDev_MainLab.Models
         {
             if (value.Length == 16)
             {
-
+                return true;
             }
             return false;
         }

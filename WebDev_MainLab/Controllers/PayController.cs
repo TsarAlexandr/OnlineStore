@@ -15,11 +15,11 @@ namespace WebDev_MainLab.Controllers
 
         public IActionResult Card()
         {
-            return View("Credit card");
+            return View();
         }
 
         [HttpPost]
-        public IActionResult Create([Bind("CardNumber, OwnerNam, OwnerSurname")]CreditCard creditCard)
+        public IActionResult Create([Bind("CardNumber, OwnerName, OwnerSurname")]CreditCard creditCard)
         {
             if (ModelState.IsValid)
             {
@@ -27,7 +27,7 @@ namespace WebDev_MainLab.Controllers
                 if (ovm == null)
                     return RedirectToAction("Create", "Order");
 
-                ovm.CardNumber = creditCard.CradNumber;
+                ovm.CardNumber = creditCard.CardNumber;
                 ovm.Name = creditCard.OwnerName;
                 ovm.Surname = creditCard.OwnerSurname;
 
