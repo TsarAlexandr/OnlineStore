@@ -1,0 +1,42 @@
+﻿@model WebDev_MainLab.Models.OrderViewModel
+
+<h2>Order</h2>
+
+<dl class="res-view">
+    <dt>
+        Name : 
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+    <dt>
+        Surname : 
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Surname)
+    </dd>
+    <dt>
+        Country : 
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Country)
+    </dd>
+    <dt>
+        City  :
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.City)
+    </dd>
+    <dt>
+        Adress :
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Adress)
+    </dd>
+    <dt>
+        Card :
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.CardNumberFirst) XXXX XXXX @Html.DisplayFor(model => model.CardNumberLast)
+    </dd>
+</dl>

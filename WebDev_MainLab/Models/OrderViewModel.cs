@@ -7,7 +7,8 @@ namespace WebDev_MainLab.Models
 {
     public class OrderViewModel
     {
-        public string CardNumber { get; set; }
+        public string CardNumberFirst { get; set; }
+        public string CardNumberLast { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Country { get; set; }

@@ -26,6 +26,15 @@
     margin: 15px;
 }
 
+.res-view dt {
+    font-size: 20px;
+}
+dd {
+    margin-left: 100px;
+    font-size: initial;
+    font-family: inherit;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
