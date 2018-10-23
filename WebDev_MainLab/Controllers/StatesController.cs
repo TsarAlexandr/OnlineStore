@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebDev_MainLab.Data;
 using WebDev_MainLab.Models;
@@ -22,22 +23,10 @@ namespace WebDev_MainLab.Controllers
             return View(await _context.State.ToListAsync());
         }
 
-        // GET: States/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public JsonResult getCountries(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var state = await _context.State
-                .SingleOrDefaultAsync(m => m.ID == id);
-            if (state == null)
-            {
-                return NotFound();
-            }
-
-            return View(state);
+            var list = _context.Country.ToList();
+            return Json(new SelectList(list, "ID", "Name"));
         }
 
         // GET: States/Create

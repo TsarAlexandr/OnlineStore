@@ -25,23 +25,7 @@ namespace WebDev_MainLab.Controllers
             return View(await _context.Country.ToListAsync());
         }
 
-        // GET: Countries/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var country = await _context.Country
-                .SingleOrDefaultAsync(m => m.ID == id);
-            if (country == null)
-            {
-                return NotFound();
-            }
-
-            return View(country);
-        }
+        
 
         // GET: Countries/Create
         public IActionResult Create()
