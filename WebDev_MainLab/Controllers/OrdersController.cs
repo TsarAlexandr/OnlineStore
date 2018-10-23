@@ -16,11 +16,16 @@ namespace WebDev_MainLab.Controllers
             _context = context;
         }
 
-        public JsonResult getCity(int id)
+        public JsonResult getCountries()
         {
-            var list = new List<State>();
-            list = _context.State.Where(city => city.CountryID == id).ToList();
-            return Json(new SelectList(list, "ID", "City"));
+            var list = _context.Country.ToList();
+            return Json(new SelectList(list, "ID", "Name"));
+        }
+
+        public JsonResult getStates(int id)
+        {
+            var list = _context.State.Where(x => x.CountryID == id).ToList();
+            return Json(new SelectList(list, "ID", "Name"));
         }
 
         // GET: Orders
@@ -42,13 +47,13 @@ namespace WebDev_MainLab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("ID,Adress")] Order order, int countryId, int stateId)
+        public IActionResult Create([Bind("ID,CountryID,StateID,Adress")] Order order)
         {
             if (ModelState.IsValid)
             {
                 var ovm = GetOrder();
-                ovm.Country = _context.Country.FirstOrDefault(x => x.ID == countryId).Name;
-                ovm.City = _context.State.FirstOrDefault(x => x.ID == stateId).Name;
+                ovm.Country = _context.Country.FirstOrDefault(x => x.ID == order.CountryID).Name;
+                ovm.City = _context.State.FirstOrDefault(x => x.ID == order.StateID).Name;
                 ovm.Adress = order.Adress;
 
                 var cart = HttpContext.Session.Get<Cart>("Cart");
