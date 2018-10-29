@@ -35,6 +35,12 @@ dd {
     font-family: inherit;
 }
 
+.payment div {
+    margin-left:500px;
+    margin-top:100px; 
+    display:inline-grid;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

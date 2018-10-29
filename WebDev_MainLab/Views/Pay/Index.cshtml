@@ -1,0 +1,13 @@
+﻿<h2>Choose your payment method:</h2>
+
+<div class="payment">
+    <input type="submit" value="Card" id="Card" class="btn btn-default" />
+    <input type="submit" value="WebMoney" id="Money" class="btn btn-default" />
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $('#Card').on("click", function () {
+        document.location.href = "Card";
+    });
+</script>
