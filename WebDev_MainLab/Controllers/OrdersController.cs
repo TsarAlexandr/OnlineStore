@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebDev_MainLab.Data;
 using WebDev_MainLab.Models;
+using WebDev_MainLab.Attributes;
 
 namespace WebDev_MainLab.Controllers
 {
@@ -51,7 +52,7 @@ namespace WebDev_MainLab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ClearCart]
+        [CartNotEmpty]
         public IActionResult Create([Bind("ID,CountryID,StateID,Adress")] Order order)
         {
             if (ModelState.IsValid)
