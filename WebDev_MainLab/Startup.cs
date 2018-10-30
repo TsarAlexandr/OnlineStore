@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebDev_MainLab.Data;
 using WebDev_MainLab.Models;
-
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
 
 namespace WebDev_MainLab
 {
@@ -39,8 +41,21 @@ namespace WebDev_MainLab
             services.AddScoped<IRepository, ApplicationDbContext>();
             services.AddDistributedMemoryCache();
             services.AddSession();
+            services.AddLocalization(option => option.ResourcesPath = "Resources");
+            services.AddMvc()
+                .AddViewLocalization();
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("ru-Ru"),
+                    new CultureInfo("en-Us"),
+                };
 
-            services.AddMvc();
+                options.DefaultRequestCulture = new RequestCulture("en-Us");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +82,9 @@ namespace WebDev_MainLab
 
             app.UseAuthentication();
 
+            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(locOptions.Value);
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -79,9 +97,6 @@ namespace WebDev_MainLab
 
         public async Task DatabaseInitialize(IServiceScope scope)
         {
-
-
-
             RoleManager<IdentityRole> roleManager =
                 scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
