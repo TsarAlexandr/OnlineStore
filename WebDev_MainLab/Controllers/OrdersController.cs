@@ -34,9 +34,13 @@ namespace WebDev_MainLab.Controllers
             return View(_context.Order.ToList());
         }
 
-        
+        public IActionResult ToCart()
+        {
+            return RedirectToAction("Index","Carts");
+        }
 
         // GET: Orders/Create
+        [CartNotEmpty]
         public IActionResult Create()
         {
             return View();
@@ -47,6 +51,7 @@ namespace WebDev_MainLab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ClearCart]
         public IActionResult Create([Bind("ID,CountryID,StateID,Adress")] Order order)
         {
             if (ModelState.IsValid)
@@ -55,13 +60,6 @@ namespace WebDev_MainLab.Controllers
                 ovm.Country = _context.Country.FirstOrDefault(x => x.ID == order.CountryID).Name;
                 ovm.City = _context.State.FirstOrDefault(x => x.ID == order.StateID).Name;
                 ovm.Adress = order.Adress;
-
-                var cart = HttpContext.Session.Get<Cart>("Cart");
-                if (cart != null)
-                {
-                    cart.Clear();
-                    HttpContext.Session.Set("Cart", cart);
-                }
 
                 HttpContext.Session.Set("Order", ovm);
                 

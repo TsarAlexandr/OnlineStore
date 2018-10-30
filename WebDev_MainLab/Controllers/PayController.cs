@@ -25,7 +25,7 @@ namespace WebDev_MainLab.Controllers
             {
                 var ovm = HttpContext.Session.Get<OrderViewModel>("Order");
                 if (ovm == null)
-                    return RedirectToAction("Create", "Order");
+                    return RedirectToAction("Create", "Orders");
 
                 ovm.CardNumberFirst = creditCard.CardNumber.Substring(0, 4);
                 ovm.CardNumberLast = creditCard.CardNumber.Substring(creditCard.CardNumber.Length - 4);
