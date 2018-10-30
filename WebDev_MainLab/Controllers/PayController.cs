@@ -23,16 +23,19 @@ namespace WebDev_MainLab.Controllers
         {
             if (ModelState.IsValid)
             {
-                var ovm = HttpContext.Session.Get<OrderViewModel>("Order");
-                if (ovm == null)
-                    return RedirectToAction("Create", "Orders");
-
+                //var ovm = HttpContext.Session.Get<OrderViewModel>("Order");
+                //if (ovm == null)
+                //    return RedirectToAction("Create", "Orders");
+                var ovm = new OrderViewModel() { Country = "Belarus", City = "Minsk", Adress = "Adress"};
                 ovm.CardNumberFirst = creditCard.CardNumber.Substring(0, 4);
                 ovm.CardNumberLast = creditCard.CardNumber.Substring(creditCard.CardNumber.Length - 4);
                 ovm.Name = creditCard.OwnerName;
                 ovm.Surname = creditCard.OwnerSurname;
-
-                HttpContext.Session.Set("Order", null);
+                //----------------------------------------
+                HttpContext.Session.Set("Order", ovm);
+                HttpContext.Session.SetNull("Order");
+                var newOvm = HttpContext.Session.Get<OrderViewModel>("Order");
+                //---------------------------------------------------------------
                 return View("OrderView", ovm);
 
             }

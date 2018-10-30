@@ -14,6 +14,11 @@ namespace WebDev_MainLab
             session.SetString(key, JsonConvert.SerializeObject(value));
         }
 
+        public static void SetNull(this ISession session, string key)
+        {
+            session.Remove(key);
+        }
+
         public static T Get<T>(this ISession session, string key)
         {
             var value = session.GetString(key);
