@@ -5,8 +5,15 @@ C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\bin\Debug\netcoreapp2.0\WebDev_MainLab.pdb
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.csprojAssemblyReference.cache
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.csproj.CoreCompileInputs.cache
-C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.AssemblyInfoInputs.cache
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.AssemblyInfo.cs
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.dll
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.pdb
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\bin\Debug\netcoreapp2.0\en-US\WebDev_MainLab.resources.dll
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\bin\Debug\netcoreapp2.0\ru-Ru\WebDev_MainLab.resources.dll
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.csproj.GenerateResource.cache
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\en-US\WebDev_MainLab.resources.dll
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\ru-Ru\WebDev_MainLab.resources.dll
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Home.About.en-us.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Home.About.ru-ru.resources

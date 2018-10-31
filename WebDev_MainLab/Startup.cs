@@ -13,6 +13,7 @@ using WebDev_MainLab.Models;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace WebDev_MainLab
 {
@@ -36,14 +37,15 @@ namespace WebDev_MainLab
                 .AddDefaultTokenProviders();
 
             // Add application services.
-           
+
 
             services.AddScoped<IRepository, ApplicationDbContext>();
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddLocalization(option => option.ResourcesPath = "Resources");
+            //services.AddLocalization();
             services.AddMvc()
-                .AddViewLocalization();
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
             services.Configure<RequestLocalizationOptions>(options =>
             {
                 var supportedCultures = new[]
@@ -71,6 +73,8 @@ namespace WebDev_MainLab
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            app.UseRequestLocalization(locOptions.Value);
 
             app.UseSession();
 
@@ -81,9 +85,6 @@ namespace WebDev_MainLab
             app.UseStaticFiles();
 
             app.UseAuthentication();
-
-            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
-            app.UseRequestLocalization(locOptions.Value);
 
             app.UseMvc(routes =>
             {
@@ -126,3 +127,4 @@ namespace WebDev_MainLab
         }
     }
 }
+

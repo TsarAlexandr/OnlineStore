@@ -1,0 +1,33 @@
+﻿
+
+@foreach (var link in Enum.GetValues(typeof(Categories)))
+{
+    @Html.RouteLink(link.ToString(), new
+           {
+
+               controller = "Goods",
+               action = "IndexCategory",
+               category = link.ToString(),
+
+           }, new
+           {
+               @class = "btn btn-block btn-default btn-lg"
+           })
+}
+
+
+
+@*@foreach (var link in Enum.GetValues(typeof(Categories)))
+     {
+         @Html.RouteLink(link.ToString(), new
+    {
+
+        controller = "AdminAdvertisements",
+        action = "Index",
+        category = link.ToString(),
+
+    }, new
+    {
+        @class = "btn btn-block btn-default btn-lg"
+    })
+     }*@
