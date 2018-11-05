@@ -9,6 +9,7 @@
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script>
     $('#Card').on("click", function () {
-        document.location.href += "/Card";
+        var url = '@Url.Action("Card", "Pay")';
+        window.location.href = url;
     });
 </script>

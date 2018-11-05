@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebDev_MainLab.Models;
 
 namespace WebDev_MainLab.Attributes
@@ -19,7 +17,8 @@ namespace WebDev_MainLab.Attributes
         {
             var order = context.HttpContext.Session.Get<Order>("Order");
             if (order == null)
-                context.HttpContext.Response.Redirect("ToOrder");
+                context.Result = new RedirectToActionResult("Create", "Orders", null);
+                
         }
     }
 }

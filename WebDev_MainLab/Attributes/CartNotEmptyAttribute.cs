@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using WebDev_MainLab.Models;
 
@@ -22,8 +23,8 @@ namespace WebDev_MainLab.Attributes
         {
             var cart = context.HttpContext.Session.Get<Cart>("Cart");
             if (cart == null)
-                context.HttpContext.Response.Redirect("ToCart");
-            
+                context.Result = new RedirectToActionResult("Index", "Carts", null);
+
         }
     }
 }
