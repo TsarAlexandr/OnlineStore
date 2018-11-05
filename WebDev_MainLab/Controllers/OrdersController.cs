@@ -35,12 +35,7 @@ namespace WebDev_MainLab.Controllers
             return View(_context.Order.ToList());
         }
 
-        public IActionResult ToCart()
-        {
-            return RedirectToAction("Index","Carts");
-        }
-
-        // GET: Orders/Create
+       // GET: Orders/Create
         [CartNotEmpty]
         public IActionResult Create()
         {
