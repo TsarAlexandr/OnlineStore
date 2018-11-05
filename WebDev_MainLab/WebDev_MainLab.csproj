@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-WebDev_MainLab-8BA01799-6D40-40F4-9E5B-ED5D2081D411</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20181105202210_UpdateUser.cs" />
+    <Compile Remove="Data\Migrations\20181105202210_UpdateUser.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
