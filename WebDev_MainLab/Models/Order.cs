@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 
 namespace WebDev_MainLab.Models
@@ -11,6 +12,8 @@ namespace WebDev_MainLab.Models
         [Required]
         [MaxLength(20)]
         public string Adress { get; set; }
+        public List<Goods> Items { get; set; }
+        public int UserID { get; set; }
 
     }
 }

@@ -27,8 +27,7 @@ namespace WebDev_MainLab.Controllers
             {
                 var ovm = HttpContext.Session.Get<OrderViewModel>("Order");
                 
-                ovm.CardNumberFirst = creditCard.CardNumber.Substring(0, 4);
-                ovm.CardNumberLast = creditCard.CardNumber.Substring(creditCard.CardNumber.Length - 4);
+                
                 ovm.Name = creditCard.OwnerName;
                 ovm.Surname = creditCard.OwnerSurname;
                 
