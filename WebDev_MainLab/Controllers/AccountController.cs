@@ -77,7 +77,6 @@ namespace WebDev_MainLab.Controllers
         }
 
        
-
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Lockout()

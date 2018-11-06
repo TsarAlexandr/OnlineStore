@@ -9,6 +9,7 @@ namespace WebDev_MainLab.Controllers
 {
     public class HomeController : Controller
     {
+        
         public IActionResult Index()
         {
             return View();
@@ -28,6 +29,7 @@ namespace WebDev_MainLab.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
 
         [HttpPost]
         public IActionResult SetLanguage(string culture, string returnUrl)

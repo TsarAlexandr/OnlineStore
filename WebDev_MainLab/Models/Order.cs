@@ -12,8 +12,8 @@ namespace WebDev_MainLab.Models
         [Required]
         [MaxLength(20)]
         public string Adress { get; set; }
-        public List<Goods> Items { get; set; }
-        public int UserID { get; set; }
+        public List<CartLine> Items { get; set; }
+        public string UserID { get; set; }
 
     }
 }

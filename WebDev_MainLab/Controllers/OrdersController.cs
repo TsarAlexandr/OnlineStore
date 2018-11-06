@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using WebDev_MainLab.Data;
 using WebDev_MainLab.Models;
 using WebDev_MainLab.Attributes;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebDev_MainLab.Controllers
 {
@@ -29,12 +30,19 @@ namespace WebDev_MainLab.Controllers
             return Json(new SelectList(list, "ID", "Name"));
         }
 
-        // GET: Orders
-        public IActionResult Index()
+        [Authorize]
+        [HttpGet]
+        public IActionResult Profile()
         {
-            return View(_context.Order.ToList());
-        }
+            var user = _context.Users.FirstOrDefault(x => x.Name == User.Identity.Name);
+            var profile = new ProfileViewModel();
+            profile.Name = user.Name;
+            profile.Surname = user.Surname;
+            profile.orderslist = _context.Order.Where(x => x.UserID == user.Id).ToList();
 
+            return View(profile);
+
+        }
        // GET: Orders/Create
         [CartNotEmpty]
         public IActionResult Create()
@@ -47,34 +55,30 @@ namespace WebDev_MainLab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         [CartNotEmpty]
         public IActionResult Create([Bind("ID,CountryID,StateID,Adress")] Order order)
         {
             if (ModelState.IsValid)
             {
-                var ovm = GetOrder();
+                var ovm = new OrderViewModel();
                 ovm.Country = _context.Country.FirstOrDefault(x => x.ID == order.CountryID).Name;
                 ovm.City = _context.State.FirstOrDefault(x => x.ID == order.StateID).Name;
                 ovm.Adress = order.Adress;
 
-                HttpContext.Session.Set("Order", ovm);
+                var user = _context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+                order.UserID = user.Id;
+                ovm.Name = user.Name;
+                ovm.Surname = user.Surname;
+
+                var cart = HttpContext.Session.Get<Cart>("Cart");
+                order.Items = cart.Lines;
+                ovm.TotalPrice = cart.ComputeTotalValue();
                 
-                return RedirectToAction("Index", "Pay");
+                return View("OrderView", ovm);
             }
             return View(order);
         }
-
-        private OrderViewModel GetOrder()
-        {
-            var order = HttpContext.Session.Get<OrderViewModel>("Order");
-            if (order == null)
-            {
-                order = new OrderViewModel();
-                HttpContext.Session.Set("Order", order);
-            }
-
-            return order;
-        }
-
+                
     }
 }
