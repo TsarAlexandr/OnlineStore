@@ -18,7 +18,7 @@
         {
             <tr>
                 <td class="text-center">
-                @using (Html.BeginForm("RemoveFilm", "Carts"))
+                @using (Html.BeginForm("RemoveItem", "Carts"))
                 {
                     <div class="pull-left">
                         @Html.Hidden("itemID", @line.MyItem.ID)

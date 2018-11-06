@@ -31,7 +31,7 @@ namespace WebDev_MainLab.Controllers
         public IActionResult IndexCategory(Categories category)
         {
             if (category != 0)
-                return View("Index", repo.Goods.Where(x => x.category == category).ToList());
+                return View("Index", repo.Goods.Where(x => x.Category == category).ToList());
             return View("Index", repo.Goods);
         }
 
@@ -173,6 +173,20 @@ namespace WebDev_MainLab.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        public IActionResult AddComments(string text, int itemID)
+        {
+            var comment = new Commentar()
+            {
+                Text = text,
+                GoodsID = itemID,
+                UserID = repo.getUser(User.Identity.Name).Id
+            };
+            var good = repo.getByID(itemID);
+            good.Comments.Add(comment);
+
+            return View("Details",good);
+        }
         private bool GoodsExists(int id)
         {
             return repo.Goods.Any(e => e.ID == id);

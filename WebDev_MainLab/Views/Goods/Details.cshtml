@@ -4,12 +4,34 @@
     ViewData["Title"] = "Details";
 }
 
+@{
+    ViewData["Title"] = "Details";
+}
+
+<head>
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
 <h2>Details</h2>
 
 <div>
-    <h4>Goods</h4>
+    <h4>Film</h4>
     <hr />
-    <dl class="dl-horizontal">
+
+</div>
+
+<div class="details">
+    <h3>@Html.DisplayFor(model => model.Name)</h3>
+    @if (@Model.ImageData == null)
+    {<img src="~/images/no_image.jpg" />}
+
+    else
+    {
+        <img src="data:image/jpg;base64,@(Convert.ToBase64String(@Model.ImageData))" />
+
+    }
+    <p>@Html.DisplayFor(model => model.Description)</p>
+    <dl>
         <dt>
             @Html.DisplayNameFor(model => model.Rating)
         </dt>
@@ -17,38 +39,52 @@
             @Html.DisplayFor(model => model.Rating)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
             @Html.DisplayNameFor(model => model.Price)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ImageData)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ImageData)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.category)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.category)
+            $@Html.DisplayFor(model => model.Price)
         </dd>
     </dl>
+    <p id="comments">
+        @foreach (var comment in Model.Comments)
+        { 
+            @Html.DisplayFor(model => comment.Text)
+        }
+    </p>
+    <form asp-action="AddComments" name="myForm" method="post" style="display:none">
+        <p>
+            <textarea cols="40" rows="10" name="text"></textarea>>
+        </p>
+        @Html.Hidden("itemID", @Model.ID)
+        <input type="submit" name="add" value="Add" />
+    </form>
+
+    <a id="addComment">Add new comment</a>
+
+    @using (Html.BeginForm("AddItem", "Carts"))
+    {
+        <div class="pull-left">
+            @Html.Hidden("itemID", @Model.ID)
+            <input type="submit" class="btn btn-success" value="Add to Cart" />
+
+        </div>
+    }
+
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#addComment").on("click", function () {
+            var form = $("form[name = 'myForm']").val();
+            form.css("display", "block");
+            $("#addComment").replaceWith(form);
+        });
+
+    });
+
+</script>

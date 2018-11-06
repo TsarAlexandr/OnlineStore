@@ -10,6 +10,7 @@ namespace WebDev_MainLab.Models
         void AddItem(Goods item);
         void UpdateItem(Goods item);
         Goods getByID(int? id);
+        ApplicationUser getUser(string userName);
 
     }
 }

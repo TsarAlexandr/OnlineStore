@@ -56,6 +56,11 @@ namespace WebDev_MainLab.Data
             this.SaveChanges();
         }
 
+        public ApplicationUser getUser(string userName)
+        {
+            return Users.FirstOrDefault(x => x.Name == userName);
+        }
+
         public DbSet<Goods> Goods { get; set; }
 
         public DbSet<State> State { get; set; }
@@ -63,6 +68,7 @@ namespace WebDev_MainLab.Data
         public DbSet<Country> Country { get; set; }
 
         public DbSet<Order> Order { get; set; }
+
         public DbSet<Commentar> Commentar { get; set; }
 
         List<Goods> IRepository.Goods => Goods.ToList();

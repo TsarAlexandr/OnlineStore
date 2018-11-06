@@ -34,7 +34,7 @@ namespace WebDev_MainLab.Controllers
         [HttpGet]
         public IActionResult Profile()
         {
-            var user = _context.Users.FirstOrDefault(x => x.Name == User.Identity.Name);
+            var user = _context.getUser(User.Identity.Name);
             var profile = new ProfileViewModel();
             profile.Name = user.Name;
             profile.Surname = user.Surname;

@@ -5,12 +5,20 @@
 
 <h2>@Model.Surname  @Model.Name</h2>
 
-@foreach (var order in Model.orderslist)
-{
-    foreach (var item in order.Items)
+<dl class="dl-horizontal">
+    @foreach (var order in Model.orderslist)
     {
-        @Html.DisplayFor(model => item.MyItem.Name)
-        @Html.DisplayFor(model => item.Quantity)
+        foreach (var item in order.Items)
+        {
 
+        <dt>
+            @Html.DisplayFor(model => item.MyItem.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => item.Quantity)
+        </dd>
+    
+
+         }
     }
-}
+</dl>

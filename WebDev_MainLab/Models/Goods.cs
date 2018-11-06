@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -64,7 +65,9 @@ namespace WebDev_MainLab.Models
         public IFormFile ImageMimeType { get; set; }
         public byte[] ImageData { get; set; }
         [Required]
-        public Categories category { get; set; }
+        public Categories Category { get; set; }
+
+        public List<Commentar> Comments { get; set; }
 
         public bool isPriceCorrect(string value)
         {
