@@ -66,8 +66,8 @@ namespace WebDev_MainLab.Models
         public byte[] ImageData { get; set; }
         [Required]
         public Categories Category { get; set; }
-
         public List<Commentar> Comments { get; set; }
+        public string AdditionalParameters { get; set; }
 
         public bool isPriceCorrect(string value)
         {

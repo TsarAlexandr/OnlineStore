@@ -12,9 +12,10 @@ using WebDev_MainLab.Models;
 namespace WebDev_MainLab.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181106153006_NewDbMigration")]
+    partial class NewDbMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -148,6 +149,8 @@ namespace WebDev_MainLab.Data.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
+                    b.Property<string>("Name");
+
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
 
@@ -161,6 +164,8 @@ namespace WebDev_MainLab.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed");
 
                     b.Property<string>("SecurityStamp");
+
+                    b.Property<string>("Surname");
 
                     b.Property<bool>("TwoFactorEnabled");
 
@@ -236,8 +241,6 @@ namespace WebDev_MainLab.Data.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AdditionalParameters");
-
                     b.Property<int>("Category");
 
                     b.Property<string>("Description")
@@ -269,19 +272,9 @@ namespace WebDev_MainLab.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(20);
 
-                    b.Property<string>("Country");
+                    b.Property<int>("CountryID");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20);
-
-                    b.Property<string>("State");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasMaxLength(20);
-
-                    b.Property<double>("TotalPrice");
+                    b.Property<int>("StateID");
 
                     b.Property<string>("UserID");
 

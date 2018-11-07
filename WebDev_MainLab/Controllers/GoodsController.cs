@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebDev_MainLab.Models;
+using WebDev_MainLab.Models.GoodsEntities;
+using Newtonsoft.Json;
 
 namespace WebDev_MainLab.Controllers
 {
@@ -15,7 +17,7 @@ namespace WebDev_MainLab.Controllers
         {
             repo = _repo;
         }
-
+        #region Indexes
         // GET: Goods
         public IActionResult Index()
         {
@@ -34,7 +36,21 @@ namespace WebDev_MainLab.Controllers
                 return View("Index", repo.Goods.Where(x => x.Category == category).ToList());
             return View("Index", repo.Goods);
         }
+        #endregion
 
+        #region JsonSerialize
+        public string SerializeElectronic([Bind("Power,CPU,Memory,OS")]Electronic electronic)
+        {
+             return  JsonConvert.SerializeObject(electronic);
+        }
+        #endregion
+
+        #region GoodsPartialViews
+        public IActionResult GetElectronicPartialView()
+        {
+            return PartialView("InputPartialViews/_ElectronicInPartial");
+        }
+        #endregion
 
         // GET: Goods/Details/5
         public IActionResult Details(int? id)
@@ -54,6 +70,7 @@ namespace WebDev_MainLab.Controllers
         }
 
         // GET: Goods/Create
+        
         public IActionResult Create()
         {
             return View();
@@ -79,6 +96,7 @@ namespace WebDev_MainLab.Controllers
 
                     goods.ImageData = imageData;
                 }
+                goods.AdditionalParameters = ViewBag.Params;
                 repo.AddItem(goods);
                 return RedirectToAction(nameof(Index));
             }

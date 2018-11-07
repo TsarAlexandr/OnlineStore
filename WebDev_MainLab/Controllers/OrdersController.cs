@@ -21,25 +21,26 @@ namespace WebDev_MainLab.Controllers
         public JsonResult getCountries()
         {
             var list = _context.Country.ToList();
-            return Json(new SelectList(list, "ID", "Name"));
+            return Json(new SelectList(list, "Name", "Name"));
         }
 
         public JsonResult getStates(int id)
         {
             var list = _context.State.Where(x => x.CountryID == id).ToList();
-            return Json(new SelectList(list, "ID", "Name"));
+            return Json(new SelectList(list, "Name", "Name"));
         }
 
         [Authorize]
         [HttpGet]
         public IActionResult Profile()
         {
-            var user = _context.getUser(User.Identity.Name);
-            var profile = new ProfileViewModel();
-            profile.Name = user.Name;
-            profile.Surname = user.Surname;
-            profile.orderslist = _context.Order.Where(x => x.UserID == user.Id).ToList();
-
+            var name = User.Identity.Name;
+            var userID = _context.getUser(name).Id;
+            var profile = new ProfileViewModel()
+            {
+                Name = name,
+                OrdersList = _context.Order.Where(x => x.UserID == userID).ToList()
+            };
             return View(profile);
 
         }
@@ -57,25 +58,20 @@ namespace WebDev_MainLab.Controllers
         [ValidateAntiForgeryToken]
         [Authorize]
         [CartNotEmpty]
-        public IActionResult Create([Bind("ID,CountryID,StateID,Adress")] Order order)
+        public IActionResult Create([Bind("ID,Country,State,Adress,Name,Surname")] Order order)
         {
             if (ModelState.IsValid)
             {
-                var ovm = new OrderViewModel();
-                ovm.Country = _context.Country.FirstOrDefault(x => x.ID == order.CountryID).Name;
-                ovm.City = _context.State.FirstOrDefault(x => x.ID == order.StateID).Name;
-                ovm.Adress = order.Adress;
-
                 var user = _context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
                 order.UserID = user.Id;
-                ovm.Name = user.Name;
-                ovm.Surname = user.Surname;
-
+                
                 var cart = HttpContext.Session.Get<Cart>("Cart");
                 order.Items = cart.Lines;
-                ovm.TotalPrice = cart.ComputeTotalValue();
+                order.TotalPrice = cart.ComputeTotalValue();
+
+                HttpContext.Session.Set("Order", order);
                 
-                return View("OrderView", ovm);
+                return View("OrderView", order);
             }
             return View(order);
         }

@@ -25,7 +25,7 @@ namespace WebDev_MainLab.Controllers
         {
             if (ModelState.IsValid)
             {
-                var ovm = HttpContext.Session.Get<OrderViewModel>("Order");
+                var ovm = HttpContext.Session.Get<Order>("Order");
                 
                 
                 ovm.Name = creditCard.OwnerName;

@@ -1,0 +1,58 @@
+﻿@model WebDev_MainLab.Models.GoodsEntities.Electronic
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="addForm" action="SerializeElectronic">
+            <div class="form-group">
+                <label asp-for="Power" class="control-label"></label>
+                <input asp-for="Power" class="form-control" />
+                <span asp-validation-for="Power" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OS" class="control-label"></label>
+                <input asp-for="OS" class="form-control" />
+                <span asp-validation-for="OS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Memory" class="control-label"></label>
+                <input asp-for="Memory" class="form-control" />
+                <span asp-validation-for="Memory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CPU" class="control-label"></label>
+                <input asp-for="CPU" class="form-control" />
+                <span asp-validation-for="CPU" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="add" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $("#addForm").on('submit', function (e) {
+        e.preventDefault();
+
+        var $this = $(this);
+        var frmValues = $this.serialize();
+        var action = $this.attr("action");
+
+        $.ajax({
+            type: 'GET',
+            url: action,
+            data: frmValues,
+            success: function (result) {
+                @ViewBag.Params = result;
+                var createButton = $('input[name=Create]');
+                createButton.css("display", "block");
+                $('#add').replaceWith(createButton);
+                return false;
+            }
+        });
+        return false;
+    });
+</script>
+

@@ -8,8 +8,8 @@ namespace WebDev_MainLab.Models
     public class ProfileViewModel
     {
         public string Name { get; set; }
-        public string Surname { get; set; }
-        public List<Order> orderslist { get; set; }
+        
+        public List<Order> OrdersList { get; set; }
 
     }
 }

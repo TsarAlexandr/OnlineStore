@@ -58,7 +58,7 @@ namespace WebDev_MainLab.Data
 
         public ApplicationUser getUser(string userName)
         {
-            return Users.FirstOrDefault(x => x.Name == userName);
+            return Users.FirstOrDefault(x => x.UserName == userName);
         }
 
         public DbSet<Goods> Goods { get; set; }
