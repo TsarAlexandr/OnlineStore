@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebDev_MainLab.Models.GoodsEntities
 {
-    public class Electronic
+    public class Electronics
     {
         public string Power { get; set; }
         public string CPU { get; set; }

@@ -4,10 +4,6 @@
     ViewData["Title"] = "Details";
 }
 
-@{
-    ViewData["Title"] = "Details";
-}
-
 <head>
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
 </head>
@@ -45,17 +41,15 @@
             $@Html.DisplayFor(model => model.Price)
         </dd>
     </dl>
+    <div id="aditionalParams"></div>
     <p id="comments">
-        @foreach (var comment in Model.Comments)
-        { 
-            @Html.DisplayFor(model => comment.Text)
-        }
+        
     </p>
+
     <form asp-action="AddComments" name="myForm" method="post" style="display:none">
         <p>
-            <textarea cols="40" rows="10" name="text"></textarea>>
+            <textarea cols="40" rows="10" name="text"></textarea>
         </p>
-        @Html.Hidden("itemID", @Model.ID)
         <input type="submit" name="add" value="Add" />
     </form>
 
@@ -80,11 +74,43 @@
 <script>
     $(document).ready(function () {
         $("#addComment").on("click", function () {
-            var form = $("form[name = 'myForm']").val();
+            var form = $("form[name=myForm]");
             form.css("display", "block");
             $("#addComment").replaceWith(form);
         });
 
     });
-
+</script>
+<script>
+    $("form[name=myForm]").on('submit', function (e) {
+        $('#comments').empty();
+        e.preventDefault();
+        $this = $(this);
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("AddComments")',
+            data: {text:$('textarea[name=text]').val(),itemID:@Model.ID},
+            dataType: 'html',
+            success: function (res) {
+                alert("Done");
+                $('#comments').append(res);
+             }
+        });
+        return false;
+     })
+</script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url:'@Url.Action("GetOutPartialView")',
+            dataType: 'html',
+            type: 'GET',
+            data: {cat:'@Model.Category'},
+            success: function (res) {
+                $('#aditionalParams').append(res);
+                
+            }
+        });
+        
+     })
 </script>

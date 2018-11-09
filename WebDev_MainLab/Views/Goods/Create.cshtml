@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
-                <select asp-for="Category" asp-items="Html.GetEnumSelectList<Categories>()" id="category" class="form-control"></select>
+                <select asp-for="Category" asp-items="Html.GetEnumSelectList<Categories>()" id="Category" class="form-control"></select>
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
 
@@ -57,12 +57,13 @@
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
-    $('#category').change(function () { 
-        alert("Done");
+    $('#Category').change(function () { 
+        
         $.ajax({
-            url: '@Url.Action("GetElectronicPartialView")',
+            url: '@Url.Action("GetInPartialView")',
             type: 'GET',
             dataType: 'html',
+            data: { id: $('#Category').val()},
             success: function (data) {
                 $("div[name=additional]").append(data);
             }

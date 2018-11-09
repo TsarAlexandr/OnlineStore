@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using WebDev_MainLab.Models;
 using WebDev_MainLab.Models.GoodsEntities;
 using Newtonsoft.Json;
+using System;
 
 namespace WebDev_MainLab.Controllers
 {
@@ -39,16 +40,24 @@ namespace WebDev_MainLab.Controllers
         #endregion
 
         #region JsonSerialize
-        public string SerializeElectronic([Bind("Power,CPU,Memory,OS")]Electronic electronic)
+        public void SerializeElectronic([Bind("Power,CPU,Memory,OS")]Electronics electronic)
         {
-             return  JsonConvert.SerializeObject(electronic);
+            TempData["params"] = JsonConvert.SerializeObject(electronic);
         }
         #endregion
 
         #region GoodsPartialViews
-        public IActionResult GetElectronicPartialView()
+        public IActionResult GetInPartialView(int id)
         {
-            return PartialView("InputPartialViews/_ElectronicInPartial");
+            var name = Enum.GetNames(typeof(Categories))[id];
+            return PartialView($"InputPartialViews/_{name}InPartial");
+        }
+        public IActionResult GetOutPartialView(string cat)
+        {
+            var par = TempData["param"] as string;
+            Type type = Type.GetType($"WebDev_MainLab.Models.GoodsEntities.{cat}");
+            var paramObj = JsonConvert.DeserializeObject(par, type);
+            return PartialView($"OutputPartialViews/_{cat}OutPartial",paramObj);
         }
         #endregion
 
@@ -61,10 +70,13 @@ namespace WebDev_MainLab.Controllers
             }
 
             var goods = repo.getByID(id);
+            
             if (goods == null)
             {
                 return NotFound();
             }
+
+            TempData["param"] = goods.AdditionalParameters;
 
             return View(goods);
         }
@@ -81,7 +93,7 @@ namespace WebDev_MainLab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Rating,Name,Description,Price,category")] Goods goods, IFormFile ImageMimeType)
+        public IActionResult Create([Bind("Rating,Name,Description,Price,Category")] Goods goods, IFormFile ImageMimeType)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +108,7 @@ namespace WebDev_MainLab.Controllers
 
                     goods.ImageData = imageData;
                 }
-                goods.AdditionalParameters = ViewBag.Params;
+                goods.AdditionalParameters = TempData["params"] as string;
                 repo.AddItem(goods);
                 return RedirectToAction(nameof(Index));
             }
@@ -191,7 +203,7 @@ namespace WebDev_MainLab.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
+        
         public IActionResult AddComments(string text, int itemID)
         {
             var comment = new Commentar()
@@ -203,7 +215,7 @@ namespace WebDev_MainLab.Controllers
             var good = repo.getByID(itemID);
             good.Comments.Add(comment);
 
-            return View("Details",good);
+            return PartialView("_CommentsPartial",good.Comments);
         }
         private bool GoodsExists(int id)
         {

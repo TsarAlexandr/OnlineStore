@@ -1,4 +1,4 @@
-﻿@model WebDev_MainLab.Models.GoodsEntities.Electronic
+﻿@model WebDev_MainLab.Models.GoodsEntities.Electronics
 
 <div class="row">
     <div class="col-md-4">
@@ -30,29 +30,6 @@
 
     </div>
 </div>
+@Html.Partial("_ScriptsPartial");
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script>
-    $("#addForm").on('submit', function (e) {
-        e.preventDefault();
-
-        var $this = $(this);
-        var frmValues = $this.serialize();
-        var action = $this.attr("action");
-
-        $.ajax({
-            type: 'GET',
-            url: action,
-            data: frmValues,
-            success: function (result) {
-                @ViewBag.Params = result;
-                var createButton = $('input[name=Create]');
-                createButton.css("display", "block");
-                $('#add').replaceWith(createButton);
-                return false;
-            }
-        });
-        return false;
-    });
-</script>
 

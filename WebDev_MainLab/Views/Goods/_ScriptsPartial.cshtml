@@ -1,0 +1,23 @@
+﻿<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $("#addForm").on('submit', function (e) {
+        e.preventDefault();
+        alert("processing");
+        var $this = $(this);
+        var frmValues = $this.serialize();
+        var action = $this.attr("action");
+        $.ajax({
+            type: 'GET',
+            url: action,
+            data: frmValues,
+            success: function () {
+                var createButton = $('input[name=Create]').parent();
+                createButton.css("display", "block");
+                $('#add').css("display", "none");
+                return false;
+            }
+        });
+        return false;
+
+     });
+</script>
