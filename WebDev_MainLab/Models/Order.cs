@@ -20,7 +20,6 @@ namespace WebDev_MainLab.Models
         [Required]
         [MaxLength(20)]
         public string Surname { get; set; }
-        public List<CartLine> Items { get; set; }
         public string UserID { get; set; }
         public double TotalPrice { get; set; }
 

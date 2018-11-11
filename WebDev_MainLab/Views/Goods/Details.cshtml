@@ -17,6 +17,7 @@
 </div>
 
 <div class="details">
+    
     <h3>@Html.DisplayFor(model => model.Name)</h3>
     @if (@Model.ImageData == null)
     {<img src="~/images/no_image.jpg" />}
@@ -87,12 +88,11 @@
         e.preventDefault();
         $this = $(this);
         $.ajax({
-            type: 'GET',
-            url: '@Url.Action("AddComments")',
+            type: 'POST',
+            url: '@Url.Action("AddComment")',
             data: {text:$('textarea[name=text]').val(),itemID:@Model.ID},
             dataType: 'html',
             success: function (res) {
-                alert("Done");
                 $('#comments').append(res);
              }
         });
@@ -108,6 +108,17 @@
             data: {cat:'@Model.Category'},
             success: function (res) {
                 $('#aditionalParams').append(res);
+                
+            }
+        });
+
+        $.ajax({
+            url:'@Url.Action("GetCommentsPartial")',
+            dataType: 'html',
+            type: 'GET',
+            data: {itemID:@Model.ID},
+            success: function (res) {
+                $('#comments').append(res);
                 
             }
         });

@@ -12,9 +12,10 @@ using WebDev_MainLab.Models;
 namespace WebDev_MainLab.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181111183404_Swap_CartLines_To_OrderItems")]
+    partial class Swap_CartLines_To_OrderItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -268,22 +269,6 @@ namespace WebDev_MainLab.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("WebDev_MainLab.Models.OrdersItems", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("GoodsId");
-
-                    b.Property<int>("OrderId");
-
-                    b.Property<int>("Quantity");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("OrdersItems");
                 });
 
             modelBuilder.Entity("WebDev_MainLab.Models.State", b =>

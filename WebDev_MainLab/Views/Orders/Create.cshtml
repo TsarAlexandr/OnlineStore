@@ -80,7 +80,7 @@
             type: 'GET',
             url: '@Url.Action("getStates")',
             dataType: 'json',
-            data: { id: $("#Country").val() },
+            data: { countryName: $("#Country").val() },
             success: function (data) {
                 var items = '';
                 items += "<option hidden> Select City </option>";

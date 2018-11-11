@@ -2,5 +2,6 @@
 
 @foreach (var coment in Model)
 {
-    @Html.DisplayFor(mdoel => coment.Text);
+    <h3>@Html.DisplayFor(model => coment.UserName):</h3> <br> 
+    @Html.DisplayFor(model => coment.Text);<hr>
 }

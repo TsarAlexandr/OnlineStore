@@ -6,7 +6,6 @@ namespace WebDev_MainLab.Models
 {
     public class CartLine
     {
-        public int ID { get; set; }
         public Goods MyItem { get; set; }
         public int Quantity { get; set; }
     }

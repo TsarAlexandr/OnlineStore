@@ -24,9 +24,10 @@ namespace WebDev_MainLab.Controllers
             return Json(new SelectList(list, "Name", "Name"));
         }
 
-        public JsonResult getStates(int id)
+        public JsonResult getStates(string countryName)
         {
-            var list = _context.State.Where(x => x.CountryID == id).ToList();
+            var country = _context.Country.FirstOrDefault(x => x.Name == countryName);
+            var list = _context.State.Where(x => x.CountryID == country.ID).ToList();
             return Json(new SelectList(list, "Name", "Name"));
         }
 
@@ -39,8 +40,24 @@ namespace WebDev_MainLab.Controllers
             var profile = new ProfileViewModel()
             {
                 Name = name,
-                OrdersList = _context.Order.Where(x => x.UserID == userID).ToList()
+                TotalSpend = 0,
+                Items = new List<CartLine>(),
+                OrdersList = _context.Order.Where(x => x.UserID == "idqwr").ToList()
+                //OrdersList = _context.Order.Where(x => x.UserID == userID).ToList()
             };
+            foreach (var order in profile.OrdersList)
+            {
+                var items = _context.OrdersItems.Where(x => x.OrderId == order.ID).ToList();
+                foreach (var item in items)
+                {
+                    profile.Items.Add(new CartLine()
+                    { MyItem = _context.getByID(item.GoodsId),
+                        Quantity = item.Quantity
+                    });
+                }
+                profile.TotalSpend += order.TotalPrice;
+            }
+            
             return View(profile);
 
         }
@@ -58,7 +75,7 @@ namespace WebDev_MainLab.Controllers
         [ValidateAntiForgeryToken]
         [Authorize]
         [CartNotEmpty]
-        public IActionResult Create([Bind("ID,Country,State,Adress,Name,Surname")] Order order)
+        public IActionResult Create([Bind("Country,State,Adress,Name,Surname")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -66,9 +83,10 @@ namespace WebDev_MainLab.Controllers
                 order.UserID = user.Id;
                 
                 var cart = HttpContext.Session.Get<Cart>("Cart");
-                order.Items = cart.Lines;
+                TempData["CartLines"] = cart.Lines;
                 order.TotalPrice = cart.ComputeTotalValue();
 
+                
                 HttpContext.Session.Set("Order", order);
                 
                 return View("OrderView", order);

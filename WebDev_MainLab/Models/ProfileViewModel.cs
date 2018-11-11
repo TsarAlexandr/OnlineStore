@@ -10,6 +10,8 @@ namespace WebDev_MainLab.Models
         public string Name { get; set; }
         
         public List<Order> OrdersList { get; set; }
+        public List<CartLine> Items { get; set; }
+        public double TotalSpend { get; set; }
 
     }
 }

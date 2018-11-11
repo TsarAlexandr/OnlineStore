@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace WebDev_MainLab.Models
 {
-    public class Commentar
+    public class OrdersItems
     {
         public int ID { get; set; }
-        public string Text { get; set; }
-        public string UserName { get; set; }
-        public int GoodsID { get; set; }
+        public int GoodsId { get; set; }
+        public int OrderId { get; set; }
+        public int Quantity { get; set; }
     }
 }

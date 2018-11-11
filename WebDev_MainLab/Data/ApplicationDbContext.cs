@@ -11,6 +11,7 @@ namespace WebDev_MainLab.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -56,9 +57,36 @@ namespace WebDev_MainLab.Data
             this.SaveChanges();
         }
 
+        public void AddComments(Commentar comment)
+        {
+            Commentar.Add(comment);
+            this.SaveChanges();
+        }
+
         public ApplicationUser getUser(string userName)
         {
             return Users.FirstOrDefault(x => x.UserName == userName);
+        }
+
+        public int AddOrder(Order order)
+        {
+            Order.Add(order);
+            SaveChanges();
+            return Order.Last().ID;
+        }
+
+        public void AddOrderItems(int orderID, List<CartLine> lines)
+        {
+            foreach (var line in lines)
+            {
+                OrdersItems.Add(new OrdersItems()
+                {
+                    GoodsId = line.MyItem.ID,
+                    OrderId = orderID,
+                    Quantity = line.Quantity
+                });
+            }
+            SaveChanges();
         }
 
         public DbSet<Goods> Goods { get; set; }
@@ -71,6 +99,10 @@ namespace WebDev_MainLab.Data
 
         public DbSet<Commentar> Commentar { get; set; }
 
+        public DbSet<OrdersItems> OrdersItems { get; set; }
+
         List<Goods> IRepository.Goods => Goods.ToList();
+        List<Commentar> IRepository.Comments => Commentar.ToList();
+       
     }
 }

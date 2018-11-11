@@ -12,9 +12,10 @@ using WebDev_MainLab.Models;
 namespace WebDev_MainLab.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181111184004_Add_OrderItems")]
+    partial class Add_OrderItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

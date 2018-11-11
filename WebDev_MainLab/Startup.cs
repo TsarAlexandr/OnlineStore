@@ -37,8 +37,6 @@ namespace WebDev_MainLab
                 .AddDefaultTokenProviders();
 
             // Add application services.
-
-
             services.AddScoped<IRepository, ApplicationDbContext>();
             services.AddDistributedMemoryCache();
             services.AddSession();
@@ -60,7 +58,8 @@ namespace WebDev_MainLab
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. 
+        //Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -73,7 +72,8 @@ namespace WebDev_MainLab
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            var locOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
+            var locOptions = app.ApplicationServices.GetService
+                <IOptions<RequestLocalizationOptions>>();
             app.UseRequestLocalization(locOptions.Value);
 
             app.UseSession();

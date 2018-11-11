@@ -10,6 +10,8 @@ namespace WebDev_MainLab.Models
         void AddItem(Goods item);
         void UpdateItem(Goods item);
         Goods getByID(int? id);
+        List<Commentar> Comments { get; }
+        void AddComments(Commentar comment);
         ApplicationUser getUser(string userName);
 
     }

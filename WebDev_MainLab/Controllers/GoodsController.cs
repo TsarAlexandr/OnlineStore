@@ -7,6 +7,8 @@ using WebDev_MainLab.Models;
 using WebDev_MainLab.Models.GoodsEntities;
 using Newtonsoft.Json;
 using System;
+using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace WebDev_MainLab.Controllers
 {
@@ -59,6 +61,28 @@ namespace WebDev_MainLab.Controllers
             var paramObj = JsonConvert.DeserializeObject(par, type);
             return PartialView($"OutputPartialViews/_{cat}OutPartial",paramObj);
         }
+
+        public IActionResult GetCommentsPartial(int itemID)
+        {
+            var comments = new List<Commentar>();
+            comments = repo.Comments.Where(x => x.GoodsID == itemID).ToList();
+            return PartialView("_CommentsPartial", comments);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddComment(string text, int itemID)
+        {
+            var comment = new Commentar()
+            {
+                Text = text,
+                GoodsID = itemID,
+                UserName = User.Identity.Name
+            };
+
+            repo.AddComments(comment);
+            return GetCommentsPartial(itemID);
+        }
         #endregion
 
         // GET: Goods/Details/5
@@ -109,6 +133,7 @@ namespace WebDev_MainLab.Controllers
                     goods.ImageData = imageData;
                 }
                 goods.AdditionalParameters = TempData["params"] as string;
+               
                 repo.AddItem(goods);
                 return RedirectToAction(nameof(Index));
             }
@@ -203,20 +228,7 @@ namespace WebDev_MainLab.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
-        public IActionResult AddComments(string text, int itemID)
-        {
-            var comment = new Commentar()
-            {
-                Text = text,
-                GoodsID = itemID,
-                UserID = repo.getUser(User.Identity.Name).Id
-            };
-            var good = repo.getByID(itemID);
-            good.Comments.Add(comment);
-
-            return PartialView("_CommentsPartial",good.Comments);
-        }
+       
         private bool GoodsExists(int id)
         {
             return repo.Goods.Any(e => e.ID == id);

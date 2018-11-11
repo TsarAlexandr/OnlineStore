@@ -18,6 +18,10 @@
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
