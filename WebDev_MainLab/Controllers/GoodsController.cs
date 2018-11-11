@@ -42,7 +42,7 @@ namespace WebDev_MainLab.Controllers
         #endregion
 
         #region JsonSerialize
-        public void SerializeElectronic([Bind("Power,CPU,Memory,OS")]Electronics electronic)
+        public void SerializeElectronics([Bind("Power,CPU,Memory,OS")]Electronics electronic)
         {
             TempData["params"] = JsonConvert.SerializeObject(electronic);
         }
