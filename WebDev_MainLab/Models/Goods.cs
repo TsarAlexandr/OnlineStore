@@ -97,7 +97,6 @@ namespace WebDev_MainLab.Models
         Electronics,
         Books,
         Clothes,
-        Toys,
-        HomeAndGarden
+        Toys
     }
 }
