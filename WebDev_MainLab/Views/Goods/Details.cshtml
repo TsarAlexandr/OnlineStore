@@ -24,7 +24,7 @@
 
     else
     {
-        <img src="data:image/jpg;base64,@(Convert.ToBase64String(@Model.ImageData))" />
+        <img src="data:image/jpg;base64,@(Convert.ToBase64String(@Model.ImageData))"  style="float:left;margin-left:10px;margin-bottom:5px;margin-right:10px;width:300px;height:auto;border:0px;"/>
 
     }
     <p>@Html.DisplayFor(model => model.Description)</p>

@@ -42,8 +42,7 @@ namespace WebDev_MainLab.Controllers
                 Name = name,
                 TotalSpend = 0,
                 Items = new List<CartLine>(),
-                OrdersList = _context.Order.Where(x => x.UserID == "idqwr").ToList()
-                //OrdersList = _context.Order.Where(x => x.UserID == userID).ToList()
+                OrdersList = _context.Order.Where(x => x.UserID == userID).ToList()
             };
             foreach (var order in profile.OrdersList)
             {
@@ -81,15 +80,11 @@ namespace WebDev_MainLab.Controllers
             {
                 var user = _context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
                 order.UserID = user.Id;
-                
-                var cart = HttpContext.Session.Get<Cart>("Cart");
-                TempData["CartLines"] = cart.Lines;
-                order.TotalPrice = cart.ComputeTotalValue();
 
                 
                 HttpContext.Session.Set("Order", order);
-                
-                return View("OrderView", order);
+
+                return RedirectToAction("Index", "Pay");//return View("OrderView", order);
             }
             return View(order);
         }

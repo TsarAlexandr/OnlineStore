@@ -21,38 +21,26 @@ namespace WebDev_MainLab.Controllers
             return View();
         }
 
-        //[OrderExist]
+        [OrderExist]
         public IActionResult Card()
         {
             return View();
         }
 
         [HttpPost]
-        //[OrderExist]
+        [OrderExist]
         public IActionResult Create([Bind("CardNumber, OwnerName, OwnerSurname")]CreditCard creditCard)
         {
             if (ModelState.IsValid)
             {
-                //var order = HttpContext.Session.Get<Order>("Order");
-                var item = _context.getByID(6);
-                var order = new Order()
-                {
-                    Adress = "ade",
-                    UserID = "idqwr",
-                    Name = "anme", 
-                    Surname = "sre",
-                    TotalPrice = 1.2F,
-                    Country = "sdsd",
-                    State = "qwe"
-                };
+                var order = HttpContext.Session.Get<Order>("Order");
+                var cart = HttpContext.Session.Get<Cart>("Cart");
+                order.TotalPrice = cart.ComputeTotalValue();
+
                 int orderID = _context.AddOrder(order);
-                //var lines = TempData["CartLines"] as List<CartLine>;
-                List<CartLine> lines = new List<CartLine>() {
-                    new CartLine() { MyItem = item, Quantity = 1 },
-                     new CartLine() { MyItem = item, Quantity = 2 },
-                      new CartLine() { MyItem = item, Quantity = 3 }
-                };
-                _context.AddOrderItems(orderID, lines);
+                
+                _context.AddOrderItems(orderID, cart.Lines);
+
                 TempData["message"] = "Payment successfull. Your order is in process";
                 return RedirectToAction(nameof(HomeController.Index), "Home");
 
