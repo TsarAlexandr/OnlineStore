@@ -1,4 +1,26 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model WebDev_MainLab.Models.GoodsEntities.Toys
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="addForm" action="SerializeToys">
+            <div class="form-group">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Color" class="control-label"></label>
+                <input asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" id="add" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+
+    </div>
+</div>
+@Html.Partial("_ScriptsPartial");
+
+

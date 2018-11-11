@@ -1,4 +1,31 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model WebDev_MainLab.Models.GoodsEntities.Books
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="addForm" action="SerializeBooks">
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ISBN" class="control-label"></label>
+                <input asp-for="ISBN" class="form-control" />
+                <span asp-validation-for="ISBN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PagesCount" class="control-label"></label>
+                <input asp-for="PagesCount" class="form-control" />
+                <span asp-validation-for="PagesCount" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" id="add" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+
+    </div>
+</div>
+@Html.Partial("_ScriptsPartial");
+
+

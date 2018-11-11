@@ -46,6 +46,18 @@ namespace WebDev_MainLab.Controllers
         {
             TempData["params"] = JsonConvert.SerializeObject(electronic);
         }
+        public void SerializeBooks([Bind("Author,ISBN,PagesCount")]Books book)
+        {
+            TempData["params"] = JsonConvert.SerializeObject(book);
+        }
+        public void SerializeClothes([Bind("Size,Material,Color,Sex")]Clothes clothe)
+        {
+            TempData["params"] = JsonConvert.SerializeObject(clothe);
+        }
+        public void SerializeToys([Bind("Age,Color")]Toys toy)
+        {
+            TempData["params"] = JsonConvert.SerializeObject(toy);
+        }
         #endregion
 
         #region GoodsPartialViews
