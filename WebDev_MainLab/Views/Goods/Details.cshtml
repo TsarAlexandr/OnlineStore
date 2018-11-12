@@ -10,21 +10,16 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Film</h4>
-    <hr />
-
-</div>
 
 <div class="details">
-    
+
     <h3>@Html.DisplayFor(model => model.Name)</h3>
     @if (@Model.ImageData == null)
     {<img src="~/images/no_image.jpg" />}
 
     else
     {
-        <img src="data:image/jpg;base64,@(Convert.ToBase64String(@Model.ImageData))"  style="float:left;margin-left:10px;margin-bottom:5px;margin-right:10px;width:300px;height:auto;border:0px;"/>
+        <img src="data:image/jpg;base64,@(Convert.ToBase64String(@Model.ImageData))" />
 
     }
     <p>@Html.DisplayFor(model => model.Description)</p>
@@ -42,19 +37,10 @@
             $@Html.DisplayFor(model => model.Price)
         </dd>
     </dl>
-    <div id="aditionalParams"></div>
-    <p id="comments">
-        
+    <p>
+        <div id="aditionalParams"></div>
     </p>
 
-    <form asp-action="AddComments" name="myForm" method="post" style="display:none">
-        <p>
-            <textarea cols="40" rows="10" name="text"></textarea>
-        </p>
-        <input type="submit" name="add" value="Add" />
-    </form>
-
-    <a id="addComment">Add new comment</a>
 
     @using (Html.BeginForm("AddItem", "Carts"))
     {
@@ -66,7 +52,16 @@
     }
 
 </div>
+<p id="comments" class="comment"></p>
 
+<form asp-action="AddComments" name="myForm" method="post" style="display:none">
+    <p>
+        <textarea cols="40" rows="10" name="text"></textarea>
+    </p>
+    <input type="submit" name="add" value="Add" />
+</form>
+
+<a id="addComment">Add new comment</a>
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
@@ -84,7 +79,6 @@
 </script>
 <script>
     $("form[name=myForm]").on('submit', function (e) {
-        $('#comments').empty();
         e.preventDefault();
         $this = $(this);
         $.ajax({
@@ -93,6 +87,7 @@
             data: {text:$('textarea[name=text]').val(),itemID:@Model.ID},
             dataType: 'html',
             success: function (res) {
+                $('#comments').empty();
                 $('#comments').append(res);
              }
         });
@@ -107,8 +102,9 @@
             type: 'GET',
             data: {cat:'@Model.Category'},
             success: function (res) {
-                $('#aditionalParams').append(res);
-                
+
+                $('img').after(res);
+
             }
         });
 
@@ -119,9 +115,9 @@
             data: {itemID:@Model.ID},
             success: function (res) {
                 $('#comments').append(res);
-                
+
             }
         });
-        
+
      })
 </script>

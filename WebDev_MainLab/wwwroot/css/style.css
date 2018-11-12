@@ -1,0 +1,174 @@
+﻿.bodyStart {
+    background-color: white;
+    background-image: none;
+}
+
+.add_button {
+    margin-right: 20px;
+}
+
+.adm-option {
+    float: left;
+    margin-top: 30%;
+    border-top: 1px solid #000;
+}
+
+.product-info {
+    background: #fff;
+    border-top: 1px solid #E9E9E9;
+}
+
+.product-info-cust {
+    float: left;
+    width: 53%;
+    text-align: center;
+}
+
+.product-info-price {
+    float: right;
+    background: #fff;
+    width: 27%;
+    text-align: center;
+}
+
+.comment {
+    background:#95c43c;
+    border:0.5px ridge black;
+    width:200px;
+    height:auto;
+}
+.details {
+    background:rgba(134, 194, 74, 0.39);
+    border: 1px solid black;
+    height: 550px;
+}
+
+    .details h3 {
+        text-align: center;
+        font-size: 50px;
+        color: black;
+        font-family: SimSun;
+    }
+
+    .details img {
+        float: left;
+        margin-left: 10px;
+        margin-bottom: 5px;
+        margin-right: 10px;
+        width: 300px;
+        height: auto;
+        border: 0px;
+    }
+
+    .details dt {
+        font-size: 20px;
+        color: black;
+    }
+
+    .details dd {
+        font-size: 15px;
+    }
+
+    .details p {
+        font-size: 20px;
+        font-family: 'Times New Roman', Times, serif;
+        color: black;
+    }
+
+.films-grid {
+    width: 342px;
+    height: 358.8px;
+    margin: 0 3% 4% 0;
+    float: left;
+    border: 3px solid #175100;
+    position: relative;
+    background-color: azure;
+}
+
+    .films-grid h2 {
+        text-align: center;
+    }
+
+    .films-grid img {
+        width: 150px;
+        height: auto;
+        border: 0px;
+        margin-bottom: 3%;
+        float: right;
+        min-width: 150px;
+        max-width: 300px;
+    }
+
+.search_area {
+    padding-left: 550px;
+    padding-right: 100px;
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+    .search_area input[type=submit] {
+        background-color: green;
+        font-size: 14px;
+    }
+
+.container_wrap {
+    padding: 5em 0;
+}
+
+.slider {
+    position: relative;
+}
+
+.rslides {
+    position: relative;
+    overflow: hidden;
+    width: 1366px;
+    height: 585px;
+    padding: 0;
+    margin: 0;
+}
+
+    .rslides li {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+    }
+
+    .rslides img {
+        display: block;
+        height: auto;
+        float: left;
+        width: 100%;
+        border: 0;
+    }
+
+.button {
+    display: block;
+    text-shadow: none;
+    margin: 0;
+    max-width: none;
+    position: absolute;
+    top: 315px;
+    right: 10%;
+}
+
+    .button a {
+        text-decoration: none;
+        color: #fff;
+        background: #d8232a;
+        padding: 8px 20px;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 50px;
+    }
+
+.foot-text p {
+    text-align: center;
+    font-size: 20px;
+}
+
+.description {
+    width: 336px;
+    height: 40px;
+}

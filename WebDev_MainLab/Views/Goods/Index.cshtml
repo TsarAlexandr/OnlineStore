@@ -3,57 +3,61 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<head>
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
 <h2>Index</h2>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Rating)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Category)
-                </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+</p>*@
+<div class="container">
+
+    <h3>Products</h3>
+    @foreach (var item in Model)
+    {
+
+    <div class="films-grid">
+
+        <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
+
+        <span>
+
+            @if (item.ImageData == null)
+            {<img src="~/images/no_image.jpg" onclick="resizeUp(this)" ondblclick="resizeDown(this)" />}
+
+            else
+            {
+                <img src="data:image/jpg;base64,@(Convert.ToBase64String(item.ImageData))" onclick="resizeUp(this)" ondblclick="resizeDown(this)" />
+
+            }
+
+        </span>
+
+        <p class="description">@Html.DisplayFor(modelItem => item.Description)</p>
+
+        @using (Html.BeginForm("AddItem", "Carts"))
+        {
+            <div class="pull-left">
+                @Html.Hidden("itemID", @item.ID)
+                <input type="submit" class="btn btn-success" value="Add to Cart" />
+
+            </div>
+        }
+        <div class="pull-right">
+
+            <a asp-action="Details" asp-route-id="@item.ID">
+                <input type="button" class="btn btn-primary" value="Details" />
+            </a>
+        </div>
+
+
+        <div class="product-info-price">
+            <h3>$@Html.DisplayFor(modelItem => item.Price)</h3>
+        </div>
+
+
+    </div>
+    }
+
+</div>
