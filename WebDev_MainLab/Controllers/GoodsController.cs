@@ -39,6 +39,10 @@ namespace WebDev_MainLab.Controllers
                 return View("Index", repo.Goods.Where(x => x.Category == category).ToList());
             return View("Index", repo.Goods);
         }
+        public IActionResult AdminIndex()
+        {
+            return View("AdminIndex", repo.Goods.ToList());
+        }
         #endregion
 
         #region JsonSerialize

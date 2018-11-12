@@ -1,8 +1,9 @@
-﻿<h2>Choose your payment method:</h2>
+﻿@inject IViewLocalizer Localizer;
+<h2>@Localizer["choose"]:</h2>
 
 <link rel="stylesheet" href="~/css/site.css" />
 <div class="payment">
-    <input type="submit" value="Card" id="Card" class="btn btn-default" />
+    <input type="submit" value=@Localizer["card"] id="Card" class="btn btn-default" />
     <input type="submit" value="WebMoney" id="Money" class="btn btn-default" />
 </div>
 

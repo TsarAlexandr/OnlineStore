@@ -12,6 +12,8 @@ namespace WebDev_MainLab.Controllers
         
         public IActionResult Index()
         {
+            if (User != null && User.IsInRole("admin"))
+                return View("AdminIndex");
             return View();
         }
 

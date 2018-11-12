@@ -13,6 +13,17 @@
     border-top: 1px solid #000;
 }
 
+.admin-panel {
+    float:right;
+    margin-right:200px;
+}
+    .admin-panel input {
+        text-align:center;
+        width:70px;
+        height:auto;
+        background-color:burlywood;
+    }
+
 .product-info {
     background: #fff;
     border-top: 1px solid #E9E9E9;
