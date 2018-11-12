@@ -17,3 +17,9 @@ C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Home.About.en-us.resources
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Home.About.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Shared._Layout.en-us.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Shared._Layout.ru-Ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Shared._LoginPartial.en-us.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Shared._LoginPartial.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Carts.Index.en-us.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Carts.Index.ru-ru.resources

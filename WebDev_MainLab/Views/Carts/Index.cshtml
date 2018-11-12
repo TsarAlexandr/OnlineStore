@@ -1,16 +1,18 @@
 ﻿@model WebDev_MainLab.Models.Cart
+@inject IViewLocalizer Localizer;
+
 @if (TempData["error"] != null)
 {
     <div class="alert alert-danger">@TempData["error"]</div>
 }
-<h2>Your Basket</h2>
+<h2>@Localizer["basket"]</h2>
 <table class="table">
     <thead>
         <tr>
-            <th class="text-center">Quantity</th>
-            <th>Item</th>
-            <th class="text-right">Price</th>
-            <th class="text-right">Cost</th>
+            <th class="text-center">@Localizer["quantity"]</th>
+            <th>@Localizer["item"]</th>
+            <th class="text-right">@Localizer["price"]</th>
+            <th class="text-right">@Localizer["cost"]</th>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +24,7 @@
                 {
                     <div class="pull-left">
                         @Html.Hidden("itemID", @line.MyItem.ID)
-                        <input type="submit" class="btn btn-danger" value="Remove" />
+                        <input type="submit" class="btn btn-danger" value="@Localizer["remove"]" />
 
                     </div>
                 }
@@ -38,7 +40,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3" class="text-right">Total:</td>
+            <td colspan="3" class="text-right">@Localizer["total"]:</td>
             <td class="text-right">
                 @Model.ComputeTotalValue().ToString()
             </td>
@@ -47,6 +49,6 @@
 </table>
 
 <div class="text-center">
-    <a class="btn btn-primary" asp-action="Index" asp-controller="Films">Back to films</a>
-    <a class="btn btn-primary" asp-action="getOrder">Get Order</a>
+    <a class="btn btn-primary" asp-action="Index" asp-controller="Films">@Localizer["back"]</a>
+    <a class="btn btn-primary" asp-action="getOrder">@Localizer["getOrder"]</a>
 </div>
