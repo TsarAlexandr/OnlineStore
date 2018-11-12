@@ -36,8 +36,7 @@
 }
 
 .product-info-price {
-    float: right;
-    background: #fff;
+    float: left;
     width: 27%;
     text-align: center;
 }
@@ -87,8 +86,8 @@
     }
 
 .films-grid {
-    width: 342px;
-    height: 358.8px;
+    width: 300px;
+    height: 300px;
     margin: 0 3% 4% 0;
     float: left;
     border: 3px solid #175100;
@@ -113,9 +112,14 @@
 .search_area {
     padding-left: 550px;
     padding-right: 100px;
-    padding-top: 20px;
+    padding-top: 0;
     font-size: 14px;
+    display:ruby-base-container;
+    
 }
+    .search_area input[type=search] {
+        width:300px;
+    }
 
     .search_area input[type=submit] {
         background-color: green;
@@ -180,6 +184,6 @@
 }
 
 .description {
-    width: 336px;
-    height: 40px;
+    width: 150px;
+    height: 95px;
 }

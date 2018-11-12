@@ -6,11 +6,7 @@
 <head>
     <link href="~/css/style.css" rel="stylesheet" />
 </head>
-<h2>Index</h2>
 
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
 <div class="container">
 
     <h3>Products</h3>
@@ -36,6 +32,10 @@
 
         <p class="description">@Html.DisplayFor(modelItem => item.Description)</p>
 
+        <div class="product-info-price">
+            <h3>$@Html.DisplayFor(modelItem => item.Price)</h3>
+        </div>
+        <hr><br>
         @using (Html.BeginForm("AddItem", "Carts"))
         {
             <div class="pull-left">
@@ -50,11 +50,10 @@
                 <input type="button" class="btn btn-primary" value="Details" />
             </a>
         </div>
+        
 
 
-        <div class="product-info-price">
-            <h3>$@Html.DisplayFor(modelItem => item.Price)</h3>
-        </div>
+        
 
 
     </div>

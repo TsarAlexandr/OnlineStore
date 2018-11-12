@@ -29,7 +29,7 @@ namespace WebDev_MainLab.Controllers
 
         public IActionResult IndexSearch(string SearchString)
         {
-            var searchResults = repo.Goods.Any(x => x.Name.Contains(SearchString));
+            var searchResults = repo.Goods.Where(x => x.Name.Contains(SearchString));
             return View("Index", searchResults);
         }
 
