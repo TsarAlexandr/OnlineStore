@@ -22,6 +22,8 @@ namespace WebDev_MainLab.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
+        #region IRepository
+
         public void RemoveItem(int? id)
         {
             if (id != null)
@@ -67,6 +69,16 @@ namespace WebDev_MainLab.Data
         {
             return Users.FirstOrDefault(x => x.UserName == userName);
         }
+
+        public int DeleteComments(int? id)
+        {
+            var comment = Commentar.First(x => x.ID == id);
+            int itemID = comment.GoodsID;
+            Commentar.Remove(comment);
+            this.SaveChanges();
+            return itemID;
+        }
+        #endregion
 
         public int AddOrder(Order order)
         {

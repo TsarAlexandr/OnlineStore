@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,14 +21,16 @@ namespace WebDev_MainLab.Controllers
         }
 
         // GET: Countries
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Country.ToListAsync());
         }
 
-        
+
 
         // GET: Countries/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             return View();
@@ -38,6 +41,7 @@ namespace WebDev_MainLab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([Bind("ID,Name")] Country country)
         {
             if (ModelState.IsValid)
@@ -50,6 +54,7 @@ namespace WebDev_MainLab.Controllers
         }
 
         // GET: Countries/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -70,6 +75,7 @@ namespace WebDev_MainLab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("ID,Name")] Country country)
         {
             if (id != country.ID)
@@ -101,6 +107,7 @@ namespace WebDev_MainLab.Controllers
         }
 
         // GET: Countries/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -121,6 +128,7 @@ namespace WebDev_MainLab.Controllers
         // POST: Countries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var country = await _context.Country.SingleOrDefaultAsync(m => m.ID == id);

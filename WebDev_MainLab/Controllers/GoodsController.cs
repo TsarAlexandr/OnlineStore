@@ -24,24 +24,30 @@ namespace WebDev_MainLab.Controllers
         // GET: Goods
         public IActionResult Index()
         {
+            if (User != null && User.IsInRole("admin"))
+                return View("AdminIndex", repo.Goods);
             return View(repo.Goods);
         }
-
         public IActionResult IndexSearch(string SearchString)
         {
             var searchResults = repo.Goods.Where(x => x.Name.Contains(SearchString));
+            if (User != null && User.IsInRole("admin"))
+                return View("AdminIndex", searchResults);
             return View("Index", searchResults);
         }
-
         public IActionResult IndexCategory(Categories category)
         {
+            string viewName = (User != null && User.IsInRole("admin")) ? "AdminIndex" : "Index";
             if (category != 0)
-                return View("Index", repo.Goods.Where(x => x.Category == category).ToList());
-            return View("Index", repo.Goods);
+                return View(viewName, repo.Goods.Where(x => x.Category == category).ToList());
+            return View(viewName, repo.Goods);
         }
-        public IActionResult AdminIndex()
+        
+        [Authorize(Roles ="admin")]
+        public IActionResult CommentarEdit(int? id)
         {
-            return View("AdminIndex", repo.Goods.ToList());
+            var commentList = repo.Comments.Where(x => x.GoodsID == id).ToList();
+            return View("CommentarEdit", commentList);
         }
         #endregion
 
@@ -101,6 +107,18 @@ namespace WebDev_MainLab.Controllers
         }
         #endregion
 
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public IActionResult DeleteCommentar(int? comID)
+        {
+            if (comID == null)
+            {
+                return NotFound();
+            }
+
+            int itemID = repo.DeleteComments(comID);
+            return CommentarEdit(itemID);
+        }
         // GET: Goods/Details/5
         public IActionResult Details(int? id)
         {
@@ -122,7 +140,7 @@ namespace WebDev_MainLab.Controllers
         }
 
         // GET: Goods/Create
-        
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             return View();
@@ -133,6 +151,7 @@ namespace WebDev_MainLab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public IActionResult Create([Bind("Rating,Name,Description,Price,Category")] Goods goods, IFormFile ImageMimeType)
         {
             if (ModelState.IsValid)
@@ -157,6 +176,7 @@ namespace WebDev_MainLab.Controllers
         }
 
         // GET: Goods/Edit/5
+        [Authorize(Roles ="admin")]
         public IActionResult Edit(int? id)
         {
             if (id == null)
@@ -177,6 +197,7 @@ namespace WebDev_MainLab.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public IActionResult Edit(int id, [Bind("Rating,Name,Description,Price,category")] Goods goods, IFormFile ImageMimeType)
         {
             if (id != goods.ID)
@@ -218,6 +239,7 @@ namespace WebDev_MainLab.Controllers
         }
 
         // GET: Goods/Delete/5
+        [Authorize(Roles = "admin")]
         public IActionResult Delete(int? id)
         {
             if (id == null)
@@ -237,6 +259,7 @@ namespace WebDev_MainLab.Controllers
         // POST: Goods/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public IActionResult DeleteConfirmed(int id)
         {
 

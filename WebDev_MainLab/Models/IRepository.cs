@@ -12,6 +12,7 @@ namespace WebDev_MainLab.Models
         Goods getByID(int? id);
         List<Commentar> Comments { get; }
         void AddComments(Commentar comment);
+        int DeleteComments(int? id);
         ApplicationUser getUser(string userName);
 
     }
