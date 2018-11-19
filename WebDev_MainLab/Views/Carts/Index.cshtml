@@ -1,4 +1,5 @@
-﻿@model WebDev_MainLab.Models.Cart
+﻿@using System.Globalization;
+@model WebDev_MainLab.Models.Cart
 @inject IViewLocalizer Localizer;
 
 @if (TempData["error"] != null)
@@ -34,7 +35,7 @@
             <td class="text-right">@line.MyItem.Price</td>
             
             <td class="text-right">
-                @((line.Quantity * Double.Parse(line.MyItem.Price)).ToString())
+                @((line.Quantity * Double.Parse(line.MyItem.Price, new CultureInfo("ru"))).ToString())
 
             </td>
         </tr>

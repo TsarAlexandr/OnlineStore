@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Globalization;
 
 namespace WebDev_MainLab.Models
 {
@@ -74,7 +74,7 @@ namespace WebDev_MainLab.Models
             var len = value.Length;
             double res;
             if (len < 8)
-                if (Double.TryParse(value, out res))
+                if (Double.TryParse(value, NumberStyles.Any, new CultureInfo("ru"), out res))
                     if (value.IndexOf(',') == (len - 3))
                         return true;
             return false;
