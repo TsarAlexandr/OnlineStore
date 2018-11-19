@@ -9,12 +9,7 @@ namespace WebDev_MainLab.Attributes
     {
         public void OnActionExecuted(ActionExecutedContext context)
         {
-            if (context.HttpContext.Request.Method == "POST")
-            {
-                context.HttpContext.Session.SetNull("Cart");
-                context.HttpContext.Session.SetNull("Order");
-            }
-            
+
         }
 
         public void OnActionExecuting(ActionExecutingContext context)

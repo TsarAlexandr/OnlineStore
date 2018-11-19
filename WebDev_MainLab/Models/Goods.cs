@@ -16,8 +16,9 @@ namespace WebDev_MainLab.Models
         public int ID { get; set; }
 
 
-        [Required]
-        [Range(1, 10, ErrorMessage = "Rating should be in range 1 to 10")]
+        [Required(ErrorMessage = "RatingRequired")]
+        [Display(Name = "Rating")]
+        [Range(1, 10, ErrorMessage = "RatingRange")]
         public int Rating
         {
             get { return _rating; }
@@ -27,8 +28,9 @@ namespace WebDev_MainLab.Models
                     _rating = value;
             }
         }
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage = "NameRequired")]
+        [Display(Name = "Name")]
+        [StringLength(50, ErrorMessage = "NameLength")]
         public string Name
         {
             get { return _name; }
@@ -39,8 +41,9 @@ namespace WebDev_MainLab.Models
             }
         }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage = "DescriptioneRequired")]
+        [Display(Name = "Description")]
+        [StringLength(50, ErrorMessage = "DescriptionLength")]
         public string Description
         {
             get { return _description; }
@@ -50,7 +53,8 @@ namespace WebDev_MainLab.Models
                     _description = value;
             }
         }
-        [Required]
+        [Required(ErrorMessage = "PriceRequired")]
+        [Display(Name = "Price")]
         [DataType(DataType.Currency)]
         public string Price
         {
@@ -64,7 +68,8 @@ namespace WebDev_MainLab.Models
         [NotMapped]
         public IFormFile ImageMimeType { get; set; }
         public byte[] ImageData { get; set; }
-        [Required]
+        [Required(ErrorMessage = "CategoryRequired")]
+        [Display(Name = "Category")]
         public Categories Category { get; set; }
         public List<Commentar> Comments { get; set; }
         public string AdditionalParameters { get; set; }
@@ -93,10 +98,15 @@ namespace WebDev_MainLab.Models
 
     public enum Categories
     {
+        [Display(Name = "All")]
         All,
+        [Display(Name = "Electronics")]
         Electronics,
+        [Display(Name = "Books")]
         Books,
+        [Display(Name = "Clothes")]
         Clothes,
+        [Display(Name = "Toys")]
         Toys
     }
 }

@@ -43,7 +43,8 @@ namespace WebDev_MainLab
             services.AddLocalization(option => option.ResourcesPath = "Resources");
             //services.AddLocalization();
             services.AddMvc()
-                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
             services.Configure<RequestLocalizationOptions>(options =>
             {
                 var supportedCultures = new[]

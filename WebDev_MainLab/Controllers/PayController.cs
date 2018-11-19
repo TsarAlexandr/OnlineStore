@@ -28,7 +28,7 @@ namespace WebDev_MainLab.Controllers
         }
 
         [HttpPost]
-        //[OrderExist]
+        [OrderExist]
         public IActionResult Create([Bind("CardNumber, OwnerName, OwnerSurname,ValidDateMonth, ValidDateYear, Code")]CreditCard creditCard)
         {
             if (ModelState.IsValid)
@@ -42,6 +42,10 @@ namespace WebDev_MainLab.Controllers
                 _context.AddOrderItems(orderID, cart.Lines);
 
                 TempData["message"] = "Payment successfull. Your order is in process";
+
+                HttpContext.Session.SetNull("Cart");
+                HttpContext.Session.SetNull("Order");
+
                 return RedirectToAction("Index", "Home");
 
             }

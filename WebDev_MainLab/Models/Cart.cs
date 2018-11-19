@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace WebDev_MainLab.Models
@@ -36,7 +37,7 @@ namespace WebDev_MainLab.Models
 
         public double ComputeTotalValue()
         {
-           return lines.Sum(e => Double.Parse(e.MyItem.Price) * e.Quantity);
+           return lines.Sum(e => Double.Parse(e.MyItem.Price, new CultureInfo("ru")) * e.Quantity);
 
         }
         public void Clear()

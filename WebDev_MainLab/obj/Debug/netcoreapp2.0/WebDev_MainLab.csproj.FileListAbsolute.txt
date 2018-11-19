@@ -28,3 +28,9 @@ C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Account.Register.en-us.resources
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Account.Register.ru-ru.resources
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Pay.Index.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.Categories.en-us.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.Categories.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.CreditCard.en-us.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.CreditCard.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.Goods.en-us.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.Goods.ru-ru.resources

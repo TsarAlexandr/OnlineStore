@@ -37,11 +37,11 @@ namespace WebDev_MainLab.Controllers
         [HttpPost]
         public IActionResult AddItem(int itemID)
         {
-            var film = repo.getByID(itemID);
-            if (film != null)
+            var item = repo.getByID(itemID);
+            if (item != null)
             {
                 var cart = GetCart();
-                cart.AddItem(film, 1);
+                cart.AddItem(item, 1);
                 HttpContext.Session.Set("Cart", cart);
             }
 

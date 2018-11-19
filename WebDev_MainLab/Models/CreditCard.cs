@@ -8,8 +8,9 @@ namespace WebDev_MainLab.Models
     {
         private string _number = "";
         private int _code;
-        
-        [Required]
+
+        [Required(ErrorMessage = "CardNumberRequired")]
+        [Display(Name = "Number")]
         public string CardNumber {
             get
                 { return _number; }
@@ -19,21 +20,24 @@ namespace WebDev_MainLab.Models
                     _number = value;
             }
         }
-        [Required]
+        [Required(ErrorMessage = "NameRequired")]
+        [Display(Name = "Name")]
         public string OwnerName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "SurnameRequired")]
+        [Display(Name = "Surname")]
         public string OwnerSurname { get; set; }
 
-        [Required]
-        [Range(1,12)]
+        [Required(ErrorMessage = "MonthRequired")]
+        [Range(1,12, ErrorMessage = "MonthRange")]
         public int ValidDateMonth { get; set; }
 
-        [Required]
-        [Range(18, 28)]
+        [Required(ErrorMessage = "YearRequired")]
+        [Range(18, 28, ErrorMessage = "YearRange")]
         public int ValidDateYear { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "CodeRequired")]
+        [Display(Name = "Code")]
         public int Code
         {
             get
