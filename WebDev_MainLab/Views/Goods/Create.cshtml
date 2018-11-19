@@ -65,6 +65,7 @@
             dataType: 'html',
             data: { id: $('#Category').val()},
             success: function (data) {
+                $("div[name=additional]").empty();
                 $("div[name=additional]").append(data);
             }
         });

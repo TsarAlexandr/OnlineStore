@@ -10,13 +10,13 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
+
             <div class="form-group">
                 <label asp-for="CardNumber" class="control-label"></label>
                 <input asp-for="CardNumber" class="form-control" />
                 <span asp-validation-for="CardNumber" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group" style="display:inline-flex">
                 <span>
                     <label asp-for="OwnerName" class="control-label"></label>
@@ -27,20 +27,26 @@
                     <label asp-for="OwnerSurname" class="control-label"></label>
                     <input asp-for="OwnerSurname" class="form-control" />
                     <span asp-validation-for="OwnerSurname" class="text-danger"></span>
-               </span>
-            </div>            
-            <div class="form-group">
-                <label asp-for="validDate" class="control-label"></label>
-                <input type="date" asp-for="validDate" class="form-control" />
-                <span asp-validation-for="validDate" class="text-danger"></span>
+                </span>
             </div>
-            
+            <label class="control-label"> Valid Thru</label>
+            <div class="form-group" style="display:flex">
+                <span>
+                    <input asp-for="ValidDateMonth" class="form-control" style="width:80px" />
+                    <span asp-validation-for="ValidDateMonth" class="text-danger"></span>
+                </span>
+                <span>
+                    <input asp-for="ValidDateYear" class="form-control" style="width:80px" />
+                    <span asp-validation-for="ValidDateYear" class="text-danger"></span>
+                </span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Code" class="control-label"></label>
                 <input asp-for="Code" class="form-control" />
                 <span asp-validation-for="Code" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>

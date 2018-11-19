@@ -28,8 +28,8 @@ namespace WebDev_MainLab.Controllers
         }
 
         [HttpPost]
-        [OrderExist]
-        public IActionResult Create([Bind("CardNumber, OwnerName, OwnerSurname")]CreditCard creditCard)
+        //[OrderExist]
+        public IActionResult Create([Bind("CardNumber, OwnerName, OwnerSurname,ValidDateMonth, ValidDateYear, Code")]CreditCard creditCard)
         {
             if (ModelState.IsValid)
             {
@@ -42,10 +42,10 @@ namespace WebDev_MainLab.Controllers
                 _context.AddOrderItems(orderID, cart.Lines);
 
                 TempData["message"] = "Payment successfull. Your order is in process";
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction("Index", "Home");
 
             }
-            return View(creditCard);
+            return View("Card", creditCard);
         }
     }
 }
