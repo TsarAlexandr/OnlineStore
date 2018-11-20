@@ -8,7 +8,7 @@
         var action = $this.attr("action");
         $.ajax({
             type: 'GET',
-            url: action,
+            url: "https://localhost:44341/Goods/"+action,
             data: frmValues,
             success: function () {
                 var createButton = $('input[name=Create]').parent();

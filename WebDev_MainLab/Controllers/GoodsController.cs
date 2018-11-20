@@ -71,6 +71,13 @@ namespace WebDev_MainLab.Controllers
         #endregion
 
         #region GoodsPartialViews
+        public IActionResult GetPartialEdit(string cat)
+        {
+            var par = TempData["param"] as string;
+            Type type = Type.GetType($"WebDev_MainLab.Models.GoodsEntities.{cat}");
+            var paramObj = JsonConvert.DeserializeObject(par, type);
+            return PartialView($"InputPartialViews/_{cat}InPartial", paramObj);
+        }
         public IActionResult GetInPartialView(int id)
         {
             var name = Enum.GetNames(typeof(Categories))[id];
@@ -185,6 +192,8 @@ namespace WebDev_MainLab.Controllers
             }
 
             var goods = repo.getByID(id);
+            TempData["param"] = goods.AdditionalParameters;
+
             if (goods == null)
             {
                 return NotFound();
@@ -198,13 +207,12 @@ namespace WebDev_MainLab.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
-        public IActionResult Edit(int id, [Bind("Rating,Name,Description,Price,category")] Goods goods, IFormFile ImageMimeType)
+        public IActionResult Edit(int id, Categories category, [Bind("ID,Rating,Name,Description,Price")] Goods goods, IFormFile ImageMimeType)
         {
             if (id != goods.ID)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -220,6 +228,8 @@ namespace WebDev_MainLab.Controllers
 
                         goods.ImageData = imageData;
                     }
+                    goods.AdditionalParameters = TempData["params"] as string;
+                    goods.Category = category;
                     repo.UpdateItem(goods);
                 }
                 catch (DbUpdateConcurrencyException)
