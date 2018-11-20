@@ -66,6 +66,7 @@ namespace WebDev_MainLab.Models
             }
         }
         [NotMapped]
+        [Display(Name="Image")]
         public IFormFile ImageMimeType { get; set; }
         public byte[] ImageData { get; set; }
         [Required(ErrorMessage = "CategoryRequired")]

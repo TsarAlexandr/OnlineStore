@@ -40,3 +40,4 @@ C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.AccountViewModels.RegisterViewModel.ru-ru.resources
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.Order.en-us.resources
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.Order.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Shared._MenuPartial.ru-ru.resources
