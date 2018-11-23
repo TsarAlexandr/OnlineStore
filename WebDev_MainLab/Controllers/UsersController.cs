@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,45 +21,46 @@ namespace WebDev_MainLab.Controllers
         }
 
         // GET: Users
+        [Authorize(Roles = "admin")]
         public IActionResult Index()
         {
-            return View(_context.Users.ToList());
+            return View(_context.Users.Where(x => x.UserName != "admin").ToList());
         }
 
-        
+
+
 
         // GET: Users/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        [Authorize(Roles = "admin")]
+        public IActionResult Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var country = await _context.Country
-                .SingleOrDefaultAsync(m => m.ID == id);
-            if (country == null)
+            var user = _context.Users
+                .SingleOrDefault(m => m.Id == id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(country);
+            return View(user);
         }
 
-        // POST: Users/Delete/5
+        // POST: Users/Delete/5\
+        [Authorize(Roles ="admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var country = await _context.Country.SingleOrDefaultAsync(m => m.ID == id);
-            _context.Country.Remove(country);
+            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CountryExists(int id)
-        {
-            return _context.Country.Any(e => e.ID == id);
-        }
+
     }
 }
