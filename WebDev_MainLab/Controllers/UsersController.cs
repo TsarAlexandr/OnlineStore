@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,13 @@ namespace WebDev_MainLab.Controllers
     public class UsersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public UsersController(ApplicationDbContext context)
+        public UsersController(ApplicationDbContext context, 
+            UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Users
@@ -27,7 +31,27 @@ namespace WebDev_MainLab.Controllers
             return View(_context.Users.Where(x => x.UserName != "admin").ToList());
         }
 
+        public async Task<IActionResult> LockOut(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var user = _context.Users
+                .SingleOrDefault(m => m.Id == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            user.LockoutEnabled = true;
+            user.LockoutEnd = DateTime.UtcNow.AddMinutes(5);
+            await _userManager.UpdateAsync(user);
+
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+
+        }
 
 
         // GET: Users/Delete/5
