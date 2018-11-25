@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using WebDev_MainLab.Models;
 
 namespace WebDev_MainLab.Controllers
@@ -12,10 +13,11 @@ namespace WebDev_MainLab.Controllers
     public class CartsController : Controller
     {
         private IRepository repo;
-
-        public CartsController(IRepository repos)
+        private readonly IStringLocalizer _localizer;
+        public CartsController(IRepository repos, IStringLocalizer localizer)
         {
             repo = repos;
+            _localizer = localizer;
         }
         [Authorize]
         public IActionResult Index()
@@ -28,7 +30,7 @@ namespace WebDev_MainLab.Controllers
             var cart = GetCart();
             if (cart.Lines.Count == 0)
             {
-                TempData["error"] = "You should have no less then ONE item in your basket, to get Order";
+                TempData["error"] = _localizer["NoItems"]; 
                 return View("Index", cart);
             }
             return RedirectToAction("Create", "Orders");
