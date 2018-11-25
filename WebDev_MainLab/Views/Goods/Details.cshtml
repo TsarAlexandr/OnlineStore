@@ -1,14 +1,11 @@
 ﻿@model WebDev_MainLab.Models.Goods
-
-@{
-    ViewData["Title"] = "Details";
-}
+@inject IViewLocalizer Localizer
 
 <head>
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
-<h2>Details</h2>
+<h2>@Localizer["Details"]</h2>
 
 
 <div class="details">
@@ -46,7 +43,7 @@
     {
         <div class="pull-left">
             @Html.Hidden("itemID", @Model.ID)
-            <input type="submit" class="btn btn-success" value="Add to Cart" />
+            <input type="submit" class="btn btn-success" value=@Localizer["Add to Cart"] />
 
         </div>
     }
@@ -58,12 +55,12 @@
     <p>
         <textarea cols="40" rows="10" name="text"></textarea>
     </p>
-    <input type="submit" name="add" value="Add" />
+    <input type="submit" name="add" value=@Localizer["Add"] />
 </form>
 
-<a id="addComment">Add new comment</a>
+<a id="addComment">@Localizer["Add new comment"]</a>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@Localizer["Back to List"]</a>
 </div>
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
