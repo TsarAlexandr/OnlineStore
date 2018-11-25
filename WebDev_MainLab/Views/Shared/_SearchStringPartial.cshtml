@@ -1,4 +1,5 @@
-﻿<head>
+﻿@inject IViewLocalizer Localizer
+<head>
     <link href="~/css/style.css" rel="stylesheet" />
 </head>
 <div class="search_area">
@@ -6,7 +7,7 @@
         <p>
 
             <input type="search" name="SearchString">
-            <input type="submit" class="btn btn-success" value="Search" />
+            <input type="submit" class="btn btn-success" value=@Localizer["Search"] />
         </p>
     </form>
 </div>
