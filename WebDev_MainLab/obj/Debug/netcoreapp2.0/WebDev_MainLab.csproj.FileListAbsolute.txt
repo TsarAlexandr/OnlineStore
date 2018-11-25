@@ -3,7 +3,6 @@ C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\bin\Debug\netcoreapp2.0\WebDev_MainLab.runtimeconfig.dev.json
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\bin\Debug\netcoreapp2.0\WebDev_MainLab.dll
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\bin\Debug\netcoreapp2.0\WebDev_MainLab.pdb
-C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.csprojAssemblyReference.cache
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.csproj.CoreCompileInputs.cache
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.AssemblyInfoInputs.cache
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.AssemblyInfo.cs
@@ -41,3 +40,18 @@ C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.Order.en-us.resources
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.Order.ru-ru.resources
 C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Shared._MenuPartial.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.GoodsEntities.Books.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.GoodsEntities.Clothes.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.GoodsEntities.Electronics.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.GoodsEntities.ESex.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Models.GoodsEntities.Toys.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Account.AccessDenied.en-us.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Account.AccessDenied.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Account.Lockout.en-us.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Account.Lockout.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Goods.AdminIndex.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Goods.Create.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Goods.Deatails.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Goods.Delete.en-us.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Goods.Delete.ru-ru.resources
+C:\Users\Царь Александр\source\repos\WebDev_MainLab\WebDev_MainLab\obj\Debug\netcoreapp2.0\WebDev_MainLab.Resources.Views.Goods.Edit.ru-ru.resources
