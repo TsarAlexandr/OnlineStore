@@ -1,22 +1,20 @@
 ﻿@model IEnumerable<WebDev_MainLab.Models.ApplicationUser>
 @inject UserManager<ApplicationUser> userManager
+@inject IViewLocalizer  Localizer
 
-
-<h2>Index</h2>
-
-
+<h2>@Localizer["Users"]</h2>
 <table class="table">
     
     <tbody>
 @foreach (var item in Model) {
-    string LockMethod = await userManager.IsLockedOutAsync(item) ? "Unblock" : "Block";
+    string LockMethod = await userManager.IsLockedOutAsync(item) ? Localizer["UnBlock"].Value : Localizer["Block"].Value;
     
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">@Localizer["Delete"]</a> |
                 <a asp-action="LockOut" asp-route-id="@item.Id">@LockMethod</a>
 
             </td>

@@ -80,11 +80,9 @@ namespace WebDev_MainLab.Controllers
             {
                 var user = _context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
                 order.UserID = user.Id;
-
-                
                 HttpContext.Session.Set("Order", order);
 
-                return RedirectToAction("Index", "Pay");//return View("OrderView", order);
+                return View("OrderView", order);
             }
             return View(order);
         }
