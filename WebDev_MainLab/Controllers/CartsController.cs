@@ -13,8 +13,8 @@ namespace WebDev_MainLab.Controllers
     public class CartsController : Controller
     {
         private IRepository repo;
-        private readonly IStringLocalizer _localizer;
-        public CartsController(IRepository repos, IStringLocalizer localizer)
+        private readonly IStringLocalizer<CartsController> _localizer;
+        public CartsController(IRepository repos, IStringLocalizer<CartsController> localizer)
         {
             repo = repos;
             _localizer = localizer;

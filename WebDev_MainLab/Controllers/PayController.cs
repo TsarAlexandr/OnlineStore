@@ -11,9 +11,9 @@ namespace WebDev_MainLab.Controllers
     public class PayController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IStringLocalizer _localizer;
+        private readonly IStringLocalizer<PayController> _localizer;
 
-        public PayController(ApplicationDbContext context, IStringLocalizer localizer)
+        public PayController(ApplicationDbContext context, IStringLocalizer<PayController> localizer)
         {
             _context = context;
             _localizer = localizer;
