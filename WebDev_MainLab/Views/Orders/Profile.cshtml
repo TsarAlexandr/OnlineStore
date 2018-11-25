@@ -11,10 +11,10 @@
         @if (item.MyItem != null)
         {
             <div style="display:inline-flex">
-                @Html.DisplayFor(model => item.MyItem.Name)
-                @Html.DisplayFor(model => item.Quantity)
-                X @Html.DisplayFor(model => item.MyItem.Price)
-            </div>
+                <h5><b>@Html.DisplayFor(model => item.MyItem.Name)</b>  :</h5>
+                <h5>@Html.DisplayFor(model => item.Quantity) </h5>
+                <h5> X @Html.DisplayFor(model => item.MyItem.Price)</h5>
+</div>
             
         }
     }

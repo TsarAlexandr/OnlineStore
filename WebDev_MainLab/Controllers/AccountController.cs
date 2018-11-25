@@ -17,13 +17,13 @@ namespace WebDev_MainLab.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IStringLocalizer _localizer;
+        private readonly IStringLocalizer<AccountController> _localizer;
         private readonly ILogger _logger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IStringLocalizer localizer,
+            IStringLocalizer<AccountController> localizer,
             ILogger<AccountController> logger)
         {
             _userManager = userManager;
