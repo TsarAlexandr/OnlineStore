@@ -207,7 +207,9 @@ namespace WebDev_MainLab.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
-        public IActionResult Edit(int id, Categories category, [Bind("ID,Rating,Name,Description,Price")] Goods goods, IFormFile ImageMimeType)
+        public IActionResult Edit(int id, Categories category, byte[] ImageData, 
+                                        [Bind("ID,Rating,Name,Description,Price")] Goods goods, 
+                                                IFormFile ImageMimeType)
         {
             if (id != goods.ID)
             {
@@ -227,6 +229,10 @@ namespace WebDev_MainLab.Controllers
                         }
 
                         goods.ImageData = imageData;
+                    }
+                    else
+                    {
+                        goods.ImageData = ImageData;
                     }
                     goods.AdditionalParameters = TempData["params"] as string;
                     goods.Category = category;
