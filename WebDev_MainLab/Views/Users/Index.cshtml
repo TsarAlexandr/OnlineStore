@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<WebDev_MainLab.Models.ApplicationUser>
+@inject UserManager<ApplicationUser> userManager
 
 
 <h2>Index</h2>
@@ -8,13 +9,15 @@
     
     <tbody>
 @foreach (var item in Model) {
+    string LockMethod = await userManager.IsLockedOutAsync(item) ? "Unblock" : "Block";
+    
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-action="LockOut" asp-route-id="@item.Id">Block</a>
+                <a asp-action="LockOut" asp-route-id="@item.Id">@LockMethod</a>
 
             </td>
         </tr>

@@ -40,12 +40,15 @@ namespace WebDev_MainLab.Controllers
 
             var user = _context.Users
                 .SingleOrDefault(m => m.Id == id);
+
             if (user == null)
             {
                 return NotFound();
             }
+
             user.LockoutEnabled = true;
-            user.LockoutEnd = DateTime.UtcNow.AddMinutes(5);
+
+            user.LockoutEnd = await _userManager.IsLockedOutAsync(user) ? DateTime.UtcNow : DateTime.UtcNow.AddMinutes(40);
             await _userManager.UpdateAsync(user);
 
             _context.SaveChanges();
