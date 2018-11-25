@@ -1,20 +1,21 @@
 ﻿@model WebDev_MainLab.Models.ProfileViewModel
-@{
-    ViewData["Title"] = "Profile";
-}
+@inject IViewLocalizer Localizer
 
 <h2>@Html.DisplayFor(model => Model.Name)</h2>
 <h3>
-    Total spend : @Html.DisplayFor(model => Model.TotalSpend);
+    @Localizer["Total spend"] : @Html.DisplayFor(model => Model.TotalSpend);
 </h3>
-<dl class="dl-horizontal">
+
     @foreach (var item in Model.Items)
     {
-        <dt>
-            @Html.DisplayFor(model => item.MyItem.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => item.Quantity)
-        </dd>
+        @if (item.MyItem != null)
+        {
+            <div style="display:inline-flex">
+                @Html.DisplayFor(model => item.MyItem.Name)
+                @Html.DisplayFor(model => item.Quantity)
+                X @Html.DisplayFor(model => item.MyItem.Price)
+            </div>
+            
+        }
     }
-</dl>
+

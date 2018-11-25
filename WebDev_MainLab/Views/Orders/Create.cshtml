@@ -1,10 +1,7 @@
 ﻿@model WebDev_MainLab.Models.Order
+@inject IViewLocalizer Localizer
 
-@{
-    ViewData["Title"] = "Create";
-}
-
-<h4>Order</h4>
+<h4>@Localizer["Order"]</h4>
     <hr />
     <div class="row">
         <div class="col-md-4">
@@ -36,16 +33,13 @@
                     <span asp-validation-for="Surname" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value=@Localizer["Create"] class="btn btn-default" />
                 </div>
             </form>
         </div>
     </div>
 
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
-
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script>
      $(document).ready(function () {
@@ -58,7 +52,7 @@
 
             success: function (data) {
                 var items = '';
-                items += "<option hidden> Select Country </option>";
+                items += "<option hidden> '@Localizer["Select country"]' </option>";
                 $.each(data, function (i, row) {
 
                     items += '<option value="' + row.value + '">' + row.text + '</option>';
@@ -83,7 +77,7 @@
             data: { countryName: $("#Country").val() },
             success: function (data) {
                 var items = '';
-                items += "<option hidden> Select City </option>";
+                items += "<option hidden> '@Localizer["Select city"]' </option>";
                 $.each(data, function (i, row) {
 
                     items += '<option value="' + row.value + '">' + row.text + '</option>';
