@@ -4,16 +4,19 @@ using WebDev_MainLab.Attributes;
 using WebDev_MainLab.Models;
 using Microsoft.AspNetCore.Mvc;
 using WebDev_MainLab.Data;
+using Microsoft.Extensions.Localization;
 
 namespace WebDev_MainLab.Controllers
 {
     public class PayController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IStringLocalizer _localizer;
 
-        public PayController(ApplicationDbContext context)
+        public PayController(ApplicationDbContext context, IStringLocalizer localizer)
         {
             _context = context;
+            _localizer = localizer;
         }
 
         public IActionResult Index()
@@ -41,7 +44,7 @@ namespace WebDev_MainLab.Controllers
                 
                 _context.AddOrderItems(orderID, cart.Lines);
 
-                TempData["message"] = "Payment successfull. Your order is in process";
+                TempData["message"] = _localizer["Payment"];
 
                 HttpContext.Session.SetNull("Cart");
                 HttpContext.Session.SetNull("Order");
