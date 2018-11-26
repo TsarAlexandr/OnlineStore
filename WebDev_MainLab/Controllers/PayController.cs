@@ -11,12 +11,12 @@ namespace WebDev_MainLab.Controllers
     public class PayController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IStringLocalizer<PayController> _localizer;
+        
 
-        public PayController(ApplicationDbContext context, IStringLocalizer<PayController> localizer)
+        public PayController(ApplicationDbContext context)
         {
             _context = context;
-            _localizer = localizer;
+           
         }
 
         public IActionResult Index()
@@ -44,7 +44,7 @@ namespace WebDev_MainLab.Controllers
                 
                 _context.AddOrderItems(orderID, cart.Lines);
 
-                TempData["message"] = _localizer["Payment"];
+                TempData["message"] = "message";
 
                 HttpContext.Session.SetNull("Cart");
                 HttpContext.Session.SetNull("Order");

@@ -126,4 +126,7 @@
   <data name="home" xml:space="preserve">
     <value>На главную</value>
   </data>
+  <data name="message" xml:space="preserve">
+    <value>Оплата прошла успешно. Ваш заказ находиться в обработке.</value>
+  </data>
 </root>

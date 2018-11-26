@@ -126,4 +126,7 @@
   <data name="home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="message" xml:space="preserve">
+    <value>Payment successful. Your order is in progress!</value>
+  </data>
 </root>
